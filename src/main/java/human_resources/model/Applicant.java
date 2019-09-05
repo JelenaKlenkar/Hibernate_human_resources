@@ -17,14 +17,8 @@ import javax.persistence.Id;
  * @author Jelena
  */
 @Entity
+public class Applicant extends Entity_ implements Serializable {
 
-public class Applicant implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "first_Name")
     private String firstName;
     private String lastName;
     private String address;
@@ -35,10 +29,11 @@ public class Applicant implements Serializable {
     private String motivationalLetter;
 
     public Applicant() {
+        super();
     }
 
-    public Applicant(Integer id, String firstName, String lastName, String address,String phoneNumber, String email, String personalIdentificationNumber, String applicantCV, String motivationalLetter) {
-        this.id = id;
+    public Applicant(Integer id, String firstName, String lastName, String address, String phoneNumber, String email, String personalIdentificationNumber, String applicantCV, String motivationalLetter) {
+        super(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -47,14 +42,6 @@ public class Applicant implements Serializable {
         this.personalIdentificationNumber = personalIdentificationNumber;
         this.applicantCV = applicantCV;
         this.motivationalLetter = motivationalLetter;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getFirstName() {
