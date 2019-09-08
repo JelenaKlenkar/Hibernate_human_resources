@@ -8,6 +8,7 @@ package human_resources.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,16 +22,20 @@ public class Testing extends Entity_ implements Serializable {
     private Integer numberOfTesting;
     private Integer ResultOfTesting;
 
+    @ManyToOne
+    private JobApplication jobApplications;
+
     public Testing() {
         super();
     }
 
-    public Testing(Integer id, String typeOfTesting, Date dateOfTesting, Integer numberOfTesting, Integer ResultOfTesting) {
+    public Testing(String typeOfTesting, Date dateOfTesting, Integer numberOfTesting, Integer ResultOfTesting, JobApplication jobApplications, Integer id) {
         super(id);
         this.typeOfTesting = typeOfTesting;
         this.dateOfTesting = dateOfTesting;
         this.numberOfTesting = numberOfTesting;
         this.ResultOfTesting = ResultOfTesting;
+        this.jobApplications = jobApplications;
     }
 
     public String getTypeOfTesting() {
@@ -63,6 +68,14 @@ public class Testing extends Entity_ implements Serializable {
 
     public void setResultOfTesting(Integer ResultOfTesting) {
         this.ResultOfTesting = ResultOfTesting;
+    }
+
+    public JobApplication getJobApplications() {
+        return jobApplications;
+    }
+
+    public void setJobApplications(JobApplication jobApplications) {
+        this.jobApplications = jobApplications;
     }
 
 }

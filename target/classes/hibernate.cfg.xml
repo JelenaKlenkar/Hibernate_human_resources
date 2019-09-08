@@ -21,12 +21,12 @@
         
         <!-- Drop and re-create the database schema on startup -->
         <!-- 
-            validate: validate the schema, makes no changes to the database.
-            update: update the schema.
-            create: creates the schema, destroying previous data.
-            create-drop: drop the schema at the end of the session. 
-            1. puta create, poslije update
-            -->
+        validate: validate the schema, makes no changes to the database.
+        update: update the schema.
+        create: creates the schema, destroying previous data.
+        create-drop: drop the schema at the end of the session. 
+        1. puta create, poslije update
+        -->
         <property name="hbm2ddl.auto">create-drop</property>
         <!-- dbcp connection pool configuration -->
         <property name="hibernate.dbcp.initialSize">5</property>
@@ -36,5 +36,11 @@
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
         
         <mapping class="human_resources.model.Applicant" />
+        <mapping class="human_resources.model.JobApplication" />
+        <mapping class="human_resources.model.Testing" />
+        <mapping class="human_resources.model.Interview" />
+        <mapping class="human_resources.model.JobPosition" />
+        <mapping class="human_resources.model.JobOffer" />
+        
     </session-factory>
 </hibernate-configuration>

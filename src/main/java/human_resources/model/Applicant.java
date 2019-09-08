@@ -6,11 +6,9 @@
 package human_resources.model;
 
 import java.io.Serializable;
-import javax.persistence.Column;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -32,7 +30,7 @@ public class Applicant extends Entity_ implements Serializable {
         super();
     }
 
-    public Applicant(Integer id, String firstName, String lastName, String address, String phoneNumber, String email, String personalIdentificationNumber, String applicantCV, String motivationalLetter) {
+    public Applicant(String firstName, String lastName, String address, String phoneNumber, String email, String personalIdentificationNumber, String applicantCV, String motivationalLetter, Integer id) {
         super(id);
         this.firstName = firstName;
         this.lastName = lastName;

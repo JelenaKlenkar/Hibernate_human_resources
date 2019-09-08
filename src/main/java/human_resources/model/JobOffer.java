@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,15 +22,19 @@ public class JobOffer extends Entity_ implements Serializable {
     private Date startingDate;
     private boolean accept;
 
+    @ManyToOne
+    private JobApplication jobApplications;
+
     public JobOffer() {
         super();
     }
 
-    public JobOffer(Integer id, BigDecimal salary, Date startingDate, boolean accept) {
+    public JobOffer(BigDecimal salary, Date startingDate, boolean accept, JobApplication jobApplications, Integer id) {
         super(id);
         this.salary = salary;
         this.startingDate = startingDate;
         this.accept = accept;
+        this.jobApplications = jobApplications;
     }
 
     public BigDecimal getSalary() {
@@ -54,6 +59,14 @@ public class JobOffer extends Entity_ implements Serializable {
 
     public void setAccept(boolean accept) {
         this.accept = accept;
+    }
+
+    public JobApplication getJobApplications() {
+        return jobApplications;
+    }
+
+    public void setJobApplications(JobApplication jobApplications) {
+        this.jobApplications = jobApplications;
     }
 
 }

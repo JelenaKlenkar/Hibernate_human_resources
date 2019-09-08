@@ -7,7 +7,9 @@ package human_resources.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,15 +22,19 @@ public class Interview extends Entity_ implements Serializable {
     private Date dateOfInterview;
     private Integer numberOfInterview;
 
+    @ManyToOne
+    private JobApplication jobApplications;
+
     public Interview() {
         super();
     }
 
-    public Interview(Integer id, String typeOfInterview, Date dateOfInterview, Integer numberOfInterview) {
+    public Interview(String typeOfInterview, Date dateOfInterview, Integer numberOfInterview, JobApplication jobApplications, Integer id) {
         super(id);
         this.typeOfInterview = typeOfInterview;
         this.dateOfInterview = dateOfInterview;
         this.numberOfInterview = numberOfInterview;
+        this.jobApplications = jobApplications;
     }
 
     public String getTypeOfInterview() {
@@ -53,6 +59,14 @@ public class Interview extends Entity_ implements Serializable {
 
     public void setNumberOfInterview(Integer numberOfInterview) {
         this.numberOfInterview = numberOfInterview;
+    }
+
+    public JobApplication getJobApplications() {
+        return jobApplications;
+    }
+
+    public void setJobApplications(JobApplication jobApplications) {
+        this.jobApplications = jobApplications;
     }
 
 }

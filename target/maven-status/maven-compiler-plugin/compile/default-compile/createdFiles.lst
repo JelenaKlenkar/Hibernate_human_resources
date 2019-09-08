@@ -1,0 +1,17 @@
+human_resources\controller\ProcessingJobApplication.class
+human_resources\controller\Processing.class
+human_resources\utility\HibernateUtil.class
+human_resources\model\JobPosition.class
+human_resources\model\Applicant.class
+human_resources\model\Entity_.class
+human_resources\controller\ProcessingJobOffer.class
+human_resources\model\Interview.class
+human_resources\model\JobApplication.class
+human_resources\controller\ProcessingInterview.class
+human_resources\controller\ProcessingJobPosition.class
+human_resources\controller\ProcessingTesting.class
+human_resources\Start.class
+human_resources\controller\ProcessingApplicant.class
+human_resources\model\Testing.class
+human_resources\model\JobOffer.class
+human_resources\utility\JelenaException.class

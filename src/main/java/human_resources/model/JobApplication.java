@@ -7,7 +7,10 @@ package human_resources.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -20,22 +23,23 @@ public class JobApplication extends Entity_ implements Serializable {
     private Date timeOfReceive;
     private Integer numberOfApplication;
 
+    @ManyToOne
+    private Applicant applicant;
+
+    @ManyToOne
+    private JobPosition jobposition;
+
     public JobApplication() {
         super();
     }
 
-    public JobApplication(Integer id, Date dateOfReceive, Date timeOfReceive, Integer numberOfApplication) {
+    public JobApplication(Date dateOfReceive, Date timeOfReceive, Integer numberOfApplication, Applicant applicant, JobPosition jobposition, Integer id) {
         super(id);
         this.dateOfReceive = dateOfReceive;
         this.timeOfReceive = timeOfReceive;
         this.numberOfApplication = numberOfApplication;
-    }
-
-    public JobApplication(Date dateOfReceive, Date timeOfReceive, Integer numberOfApplication, Integer id) {
-        super(id);
-        this.dateOfReceive = dateOfReceive;
-        this.timeOfReceive = timeOfReceive;
-        this.numberOfApplication = numberOfApplication;
+        this.applicant = applicant;
+        this.jobposition = jobposition;
     }
 
     public Date getDateOfReceive() {
@@ -60,6 +64,22 @@ public class JobApplication extends Entity_ implements Serializable {
 
     public void setNumberOfApplication(Integer numberOfApplication) {
         this.numberOfApplication = numberOfApplication;
+    }
+
+    public Applicant getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;
+    }
+
+    public JobPosition getJobposition() {
+        return jobposition;
+    }
+
+    public void setJobposition(JobPosition jobposition) {
+        this.jobposition = jobposition;
     }
 
 }

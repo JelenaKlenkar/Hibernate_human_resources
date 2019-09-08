@@ -6,7 +6,9 @@
 package human_resources.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,7 +24,7 @@ public class JobPosition extends Entity_ implements Serializable {
         super();
     }
 
-    public JobPosition(Integer id, String nameOfJobPosition, String jobDescription) {
+    public JobPosition(String nameOfJobPosition, String jobDescription, Integer id) {
         super(id);
         this.nameOfJobPosition = nameOfJobPosition;
         this.jobDescription = jobDescription;
