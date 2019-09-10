@@ -15,17 +15,17 @@ import java.util.List;
  */
 public class ProcessingInterview extends Processing<Interview> {
 
-    public List<Interview> getInterviews() {
+    public List<Interview> getEntitys() {
         return session.createQuery("from Interview").list();
     }
 
     @Override
-    protected void controlSave() throws JelenaException {
+    protected void controlSave(Interview entity_) throws JelenaException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    protected void controlDelete() throws JelenaException {
+    protected void controlDelete(Interview entity_) throws JelenaException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

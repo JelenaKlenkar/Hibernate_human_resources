@@ -7,6 +7,7 @@ package human_resources.controller;
 
 import human_resources.utility.HibernateUtil;
 import human_resources.utility.JelenaException;
+import java.util.List;
 import org.hibernate.Session;
 
 /**
@@ -15,9 +16,11 @@ import org.hibernate.Session;
  */
 public abstract class Processing<T> {
 
-    protected abstract void controlSave() throws JelenaException;
+    protected abstract void controlSave(T entity_) throws JelenaException;
 
-    protected abstract void controlDelete() throws JelenaException;
+    protected abstract void controlDelete(T entity_) throws JelenaException;
+
+    public abstract List<T> getEntitys();
 
     protected Session session;
 
@@ -26,7 +29,7 @@ public abstract class Processing<T> {
     }
 
     public T save(T entity_) throws JelenaException {
-        controlSave();
+        controlSave(entity_);
         session.beginTransaction();
         session.save(entity_);
         session.getTransaction().commit();
@@ -34,7 +37,7 @@ public abstract class Processing<T> {
     }
 
     public void delete(T entity_) throws JelenaException {
-        controlSave();
+        controlSave(entity_);
         session.beginTransaction();
         session.delete(entity_);
         session.getTransaction().commit();
