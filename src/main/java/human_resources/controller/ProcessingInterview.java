@@ -21,12 +21,31 @@ public class ProcessingInterview extends Processing<Interview> {
 
     @Override
     protected void controlSave(Interview entity_) throws JelenaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controlTypeOfInterview(entity_);
+        controlDateOfInterview(entity_);
+        controlNumberOfInterview(entity_);
     }
 
     @Override
     protected void controlDelete(Interview entity_) throws JelenaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
+    private void controlTypeOfInterview(Interview entity_) throws JelenaException {
+        if (entity_.getTypeOfInterview() == null || entity_.getTypeOfInterview().length() == 0) {
+
+            throw new JelenaException("Type of interview needs to be entered");
+        }
+        if (entity_.getTypeOfInterview().length() > 50) {
+            throw new JelenaException("Type of interview cannot contain more then 50 letters");
+        }
+    }
+
+    private void controlDateOfInterview(Interview entity_) throws JelenaException {
+
+    }
+
+    private void controlNumberOfInterview(Interview entity_) throws JelenaException {
+
+    }
 }

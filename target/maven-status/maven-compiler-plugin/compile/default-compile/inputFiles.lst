@@ -10,8 +10,12 @@ C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\ja
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\controller\Processing.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\model\JobPosition.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\model\Applicant.java
+C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\model\Operator.java
+C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\test\TestApplicant.java
+C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\controller\ProcessingOperator.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\controller\ProcessingTesting.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\Start.java
+C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\test\TestOperator.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\utility\HibernateUtil.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\controller\ProcessingJobOffer.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\controller\ProcessingJobPosition.java

@@ -23,6 +23,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.4.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
     </dependencies>
     <name>Hibernate_human_resources</name>
 </project>

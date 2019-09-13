@@ -5,6 +5,7 @@
  */
 package human_resources;
 
+import human_resources.test.TestOperator;
 import human_resources.utility.HibernateUtil;
 
 /**
@@ -13,7 +14,8 @@ import human_resources.utility.HibernateUtil;
  */
 public class Start {
     public static void main(String[] args) {
-        HibernateUtil.getSession();
+        //HibernateUtil.getSession();
+        TestOperator.test();
     }
     
 }
