@@ -18,18 +18,18 @@ public class Operator extends Entity_ implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
-    private String lozinka;
+    private String password;
 
     public Operator() {
         super();
     }
 
-    public Operator(Integer id, String firstName, String lastName, String email, String lozinka) {
+    public Operator(Integer id, String firstName, String lastName, String email, String password) {
         super(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.lozinka = lozinka;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -56,12 +56,12 @@ public class Operator extends Entity_ implements Serializable {
         this.email = email;
     }
 
-    public String getLozinka() {
-        return lozinka;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLozinka(String lozinka) {
-        this.lozinka = lozinka;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

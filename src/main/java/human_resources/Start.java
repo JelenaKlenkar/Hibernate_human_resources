@@ -7,6 +7,7 @@ package human_resources;
 
 import human_resources.test.TestOperator;
 import human_resources.utility.HibernateUtil;
+import human_resources.view.Authorisation;
 
 /**
  *
@@ -15,7 +16,8 @@ import human_resources.utility.HibernateUtil;
 public class Start {
     public static void main(String[] args) {
         //HibernateUtil.getSession();
-        TestOperator.test();
+        //TestOperator.test();
+        new Authorisation().setVisible(true);
     }
     
 }

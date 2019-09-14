@@ -21,7 +21,7 @@ public class TestOperator {
         o.setFirstName("Jelena");
         o.setLastName("Klenkar");
         o.setEmail("jelena.klenkar@gmail.com");
-        o.setLozinka(BCrypt.hashpw("ja", BCrypt.gensalt()));
+        o.setPassword(BCrypt.hashpw("ja", BCrypt.gensalt()));
 
         ProcessingOperator processing = new ProcessingOperator();
 
