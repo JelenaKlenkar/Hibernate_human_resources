@@ -5,9 +5,12 @@
  */
 package human_resources;
 
+import human_resources.model.Interview;
 import human_resources.test.TestOperator;
 import human_resources.utility.HibernateUtil;
 import human_resources.view.Authorisation;
+import human_resources.view.SplashScreen;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +21,8 @@ public class Start {
         //HibernateUtil.getSession();
         //TestOperator.test();
         new Authorisation().setVisible(true);
+        //new SplashScreen().setVisible(true);
+       
     }
     
 }

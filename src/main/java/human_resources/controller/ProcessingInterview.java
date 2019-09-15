@@ -7,6 +7,7 @@ package human_resources.controller;
 
 import human_resources.model.Interview;
 import human_resources.utility.JelenaException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -42,10 +43,15 @@ public class ProcessingInterview extends Processing<Interview> {
     }
 
     private void controlDateOfInterview(Interview entity_) throws JelenaException {
+        if (entity_.getDateOfInterview() == null || entity_.getDateOfInterview().toString().length() == 0) {
 
+            throw new JelenaException("Date of interview needs to be entered");
+        }
     }
 
     private void controlNumberOfInterview(Interview entity_) throws JelenaException {
-
+        if (entity_.getNumberOfInterview() == null || entity_.getNumberOfInterview().toString().length() == 0) {
+            throw new JelenaException("Number of interview needs to be entered");
+        }
     }
 }

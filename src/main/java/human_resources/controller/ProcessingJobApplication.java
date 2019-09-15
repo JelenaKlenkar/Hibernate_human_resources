@@ -21,12 +21,31 @@ public class ProcessingJobApplication extends Processing<JobApplication> {
 
     @Override
     protected void controlSave(JobApplication entity_) throws JelenaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controlDateOfReceive(entity_);
+        controlTimeOfReceive(entity_);
+        controlNumberOfApplication(entity_);
     }
 
     @Override
     protected void controlDelete(JobApplication entity_) throws JelenaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
+    private void controlDateOfReceive(JobApplication entity_) throws JelenaException {
+        if (entity_.getDateOfReceive() == null || entity_.getDateOfReceive().toString().length() == 0) {
+            throw new JelenaException("Date of receive needs to be entered");
+        }
+    }
+
+    private void controlTimeOfReceive(JobApplication entity_) throws JelenaException {
+        if (entity_.getTimeOfReceive() == null || entity_.getTimeOfReceive().toString().length() == 0) {
+            throw new JelenaException("Time of receive needs to be entered");
+        }
+    }
+
+    private void controlNumberOfApplication(JobApplication entity_) throws JelenaException {
+        if (entity_.getNumberOfApplication() == null || entity_.getNumberOfApplication().toString().length() == 0) {
+            throw new JelenaException("Number of application needs to be entered");
+        }
+    }
 }

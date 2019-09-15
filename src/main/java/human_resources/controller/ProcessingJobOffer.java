@@ -21,12 +21,30 @@ public class ProcessingJobOffer extends Processing<JobOffer> {
 
     @Override
     protected void controlSave(JobOffer entity_) throws JelenaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controlSalary(entity_);
+        controlStartingDate(entity_);
+        controlAccept(entity_);
     }
 
     @Override
     protected void controlDelete(JobOffer entity_) throws JelenaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+
+    private void controlSalary(JobOffer entity_) throws JelenaException {
+        if (entity_.getSalary() == null || entity_.getSalary().toString().length() == 0) {
+            throw new JelenaException("Salary needs to be entered");
+        }
+    }
+
+    private void controlStartingDate(JobOffer entity_) throws JelenaException{
+        if (entity_.getStartingDate() == null || entity_.getStartingDate().toString().length() == 0) {
+            throw new JelenaException("Starting date needs to be entered");
+        }
+    }
+
+    private void controlAccept(JobOffer entity_) throws JelenaException {
+       
     }
     
 }
