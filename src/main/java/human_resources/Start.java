@@ -7,6 +7,7 @@ package human_resources;
 
 import human_resources.model.Interview;
 import human_resources.test.TestOperator;
+import human_resources.test.test;
 import human_resources.utility.HibernateUtil;
 import human_resources.view.Authorisation;
 import human_resources.view.SplashScreen;
@@ -20,8 +21,9 @@ public class Start {
     public static void main(String[] args) {
         //HibernateUtil.getSession();
         //TestOperator.test();
-        new Authorisation().setVisible(true);
-        //new SplashScreen().setVisible(true);
+        //new Authorisation().setVisible(true);
+        new SplashScreen().setVisible(true);
+        //test.test();
        
     }
     

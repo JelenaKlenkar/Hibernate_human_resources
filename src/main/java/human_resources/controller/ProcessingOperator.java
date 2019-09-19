@@ -15,6 +15,24 @@ import java.util.List;
  */
 public class ProcessingOperator extends Processing<Operator> {
 
+   
+
+    @Override
+    public List<Operator> getEntitys() {
+        
+    return session.createQuery("from Operator").list();
+    
+}
+    
+    public Operator getOperater(String email){
+        
+        return (Operator)session.createQuery("from Operator a "
+                + " where a.email=:email ")
+                .setParameter("email", email).uniqueResult();
+        
+        
+    }
+
     @Override
     protected void controlSave(Operator entity_) throws JelenaException {
         
@@ -22,13 +40,7 @@ public class ProcessingOperator extends Processing<Operator> {
 
     @Override
     protected void controlDelete(Operator entity_) throws JelenaException {
-        
+       
     }
-
-    @Override
-    public List<Operator> getEntitys() {
-        
-    return session.createQuery("from Operator").list();
-}
     
 }

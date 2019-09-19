@@ -26,7 +26,7 @@ public class TestOperator {
         ProcessingOperator processing = new ProcessingOperator();
 
         try {
-            o = processing.save(o);
+          processing.save(o);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

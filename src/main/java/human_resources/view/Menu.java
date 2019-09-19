@@ -30,24 +30,218 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        btnApplicants = new javax.swing.JButton();
+        btnJobApplications = new javax.swing.JButton();
+        btnJobPositions = new javax.swing.JButton();
+        btnTestings = new javax.swing.JButton();
+        btnInterviews = new javax.swing.JButton();
+        btnJobOffers = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jmFile = new javax.swing.JMenu();
+        jmExit = new javax.swing.JMenuItem();
+        jmHelp = new javax.swing.JMenu();
+        jmAboutProgram = new javax.swing.JMenuItem();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Programs"));
+
+        btnApplicants.setBackground(new java.awt.Color(204, 204, 204));
+        btnApplicants.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnApplicants.setText("Applicants");
+        btnApplicants.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApplicantsActionPerformed(evt);
+            }
+        });
+
+        btnJobApplications.setBackground(new java.awt.Color(204, 204, 204));
+        btnJobApplications.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnJobApplications.setText("Job applications");
+        btnJobApplications.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJobApplicationsActionPerformed(evt);
+            }
+        });
+
+        btnJobPositions.setBackground(new java.awt.Color(204, 204, 204));
+        btnJobPositions.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnJobPositions.setText("Job positions");
+        btnJobPositions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJobPositionsActionPerformed(evt);
+            }
+        });
+
+        btnTestings.setBackground(new java.awt.Color(204, 204, 204));
+        btnTestings.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnTestings.setText("Testings");
+        btnTestings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestingsActionPerformed(evt);
+            }
+        });
+
+        btnInterviews.setBackground(new java.awt.Color(204, 204, 204));
+        btnInterviews.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnInterviews.setText("Interviews");
+        btnInterviews.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInterviewsActionPerformed(evt);
+            }
+        });
+
+        btnJobOffers.setBackground(new java.awt.Color(204, 204, 204));
+        btnJobOffers.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnJobOffers.setText("JobOffers");
+        btnJobOffers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJobOffersActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnTestings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnApplicants, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnJobApplications, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnInterviews, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnJobPositions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnJobOffers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnApplicants)
+                    .addComponent(btnJobApplications)
+                    .addComponent(btnJobPositions))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTestings)
+                    .addComponent(btnInterviews)
+                    .addComponent(btnJobOffers))
+                .addGap(21, 21, 21))
+        );
+
+        jmFile.setText("File");
+
+        jmExit.setText("Exit");
+        jmExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmExitActionPerformed(evt);
+            }
+        });
+        jmFile.add(jmExit);
+
+        jMenuBar1.add(jmFile);
+
+        jmHelp.setText("Help");
+
+        jmAboutProgram.setText("About program");
+        jmAboutProgram.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAboutProgramActionPerformed(evt);
+            }
+        });
+        jmHelp.add(jmAboutProgram);
+
+        jMenuBar1.add(jmHelp);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jmExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmExitActionPerformed
+        dispose();
+    }//GEN-LAST:event_jmExitActionPerformed
+
+    private void jmAboutProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAboutProgramActionPerformed
+        new AboutProgram().setVisible(true);
+    }//GEN-LAST:event_jmAboutProgramActionPerformed
+
+    private void btnApplicantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplicantsActionPerformed
+        new FormApplicant().setVisible(true);
+    }//GEN-LAST:event_btnApplicantsActionPerformed
+
+    private void btnJobApplicationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJobApplicationsActionPerformed
+        new FormJobApplication().setVisible(true);
+    }//GEN-LAST:event_btnJobApplicationsActionPerformed
+
+    private void btnJobPositionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJobPositionsActionPerformed
+        new FormJobPosition().setVisible(true);
+    }//GEN-LAST:event_btnJobPositionsActionPerformed
+
+    private void btnTestingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestingsActionPerformed
+        new FormTesting().setVisible(true);
+    }//GEN-LAST:event_btnTestingsActionPerformed
+
+    private void btnInterviewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInterviewsActionPerformed
+        new FormInterview().setVisible(true);
+    }//GEN-LAST:event_btnInterviewsActionPerformed
+
+    private void btnJobOffersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJobOffersActionPerformed
+        new FormJobOffer().setVisible(true);
+    }//GEN-LAST:event_btnJobOffersActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApplicants;
+    private javax.swing.JButton btnInterviews;
+    private javax.swing.JButton btnJobApplications;
+    private javax.swing.JButton btnJobOffers;
+    private javax.swing.JButton btnJobPositions;
+    private javax.swing.JButton btnTestings;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenuItem jmAboutProgram;
+    private javax.swing.JMenuItem jmExit;
+    private javax.swing.JMenu jmFile;
+    private javax.swing.JMenu jmHelp;
     // End of variables declaration//GEN-END:variables
 }

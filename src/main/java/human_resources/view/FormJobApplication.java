@@ -5,31 +5,20 @@
  */
 package human_resources.view;
 
-import human_resources.controller.ProcessingApplicant;
+import human_resources.utility.Utility;
 
 /**
  *
  * @author Jelena
  */
-public class SplashScreen extends javax.swing.JFrame {
+public class FormJobApplication extends javax.swing.JFrame {
 
     /**
-     * Creates new form SplashScreen
+     * Creates new form FormJobApplication
      */
-    public SplashScreen() {
+    public FormJobApplication() {
         initComponents();
-        Loading loading=new Loading();
-        loading.start();
-    }
-    public class Loading extends Thread{
-        
-        @Override
-        public void run(){
-            if(new ProcessingApplicant().getEntitys().size()>=0){
-                new Authorisation().setVisible(true);
-                dispose();
-            }
-        }
+        setTitle(Utility.getNameOfApplication() + " Job applications");
     }
 
     /**
@@ -41,29 +30,24 @@ public class SplashScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hr.jpg"))); // NOI18N
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

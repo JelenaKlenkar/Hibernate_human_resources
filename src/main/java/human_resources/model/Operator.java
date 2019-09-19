@@ -14,7 +14,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Operator extends Entity_ implements Serializable {
-
+    
     private String firstName;
     private String lastName;
     private String email;
@@ -65,3 +65,5 @@ public class Operator extends Entity_ implements Serializable {
     }
 
 }
+
+    

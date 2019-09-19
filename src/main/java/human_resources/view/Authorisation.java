@@ -5,6 +5,7 @@
  */
 package human_resources.view;
 
+import human_resources.controller.ProcessingOperator;
 import human_resources.model.Operator;
 import human_resources.utility.Utility;
 import java.awt.Color;
@@ -25,10 +26,11 @@ public class Authorisation extends javax.swing.JFrame {
      */
     public Authorisation() {
         initComponents();
-        //setTitle(Utility.getNameOfApplication());
-        //if(Utility.isDev()){
-        //txtEmail.setText("jelena.klenkar@gmail.com");
-        // pswLozinka.setText("ja");
+        setTitle(Utility.getNameOfApplication());
+        if (Utility.isDev()) {
+            txtEmail.setText("jelena.klenkar@gmail.com");
+            pswPassword.setText("ja");
+        }
 
     }
 
@@ -138,7 +140,7 @@ public class Authorisation extends javax.swing.JFrame {
         pswPassword.setBackground(Color.WHITE);
         pswPassword.setForeground(Color.BLACK);
 
-        Operator o = new Operator();
+        Operator o = new ProcessingOperator().getOperater(txtEmail.getText());;
 
         if (o == null) {
             JOptionPane.showMessageDialog(null, "Email not found");
@@ -153,6 +155,8 @@ public class Authorisation extends javax.swing.JFrame {
             pswPassword.requestFocus();
             return;
         }
+        new Menu().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAuthorizeActionPerformed
 
     private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
