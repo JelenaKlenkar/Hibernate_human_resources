@@ -15,6 +15,10 @@ public class Utility {
         return "Human resources APP";
     }
 
+    public static String getFormatDateAndTime() {
+        return "dd. MM. YYYY. HH:mm:ss";
+    }
+
     public static boolean isDev() {
         return true;
     }
