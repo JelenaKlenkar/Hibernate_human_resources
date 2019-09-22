@@ -5,7 +5,17 @@
  */
 package human_resources.view;
 
+import human_resources.controller.ProcessingApplicant;
+import human_resources.model.Applicant;
+import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import org.apache.commons.validator.routines.EmailValidator;
 
 /**
  *
@@ -16,9 +26,13 @@ public class FormApplicant extends javax.swing.JFrame {
     /**
      * Creates new form FormApplicant
      */
+    private ProcessingApplicant processing;
+
     public FormApplicant() {
         initComponents();
         setTitle(Utility.getNameOfApplication() + " Applicants");
+        processing = new ProcessingApplicant();
+        load();
     }
 
     /**
@@ -51,7 +65,7 @@ public class FormApplicant extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        List = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -100,12 +114,27 @@ public class FormApplicant extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,15 +156,13 @@ public class FormApplicant extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtMotivationalLetter, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtPersonalIdentificationNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(txtPersonalIdentificationNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(txtEmail)
                             .addComponent(txtApplicantCv)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(txtAddress)
+                            .addComponent(txtLastName)
+                            .addComponent(txtFirstName)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(btnAdd)
@@ -164,9 +191,9 @@ public class FormApplicant extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPhoneNumber)
-                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPhoneNumber))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
@@ -191,9 +218,14 @@ public class FormApplicant extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        jList2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jList2.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jScrollPane2.setViewportView(jList2);
+        List.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        List.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        List.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(List);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,13 +252,143 @@ public class FormApplicant extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
- 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        Applicant a = new Applicant();
+
+        save(a);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void save(Applicant a) {
+        if (!control(a)) {
+            return;
+
+        }
+        try {
+            processing.save(a);
+        } catch (JelenaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return;
+        }
+
+        load();
+    }
+
+    private boolean control(Applicant a) {
+        if (txtFirstName.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "First name is mandatory");
+            return false;
+        }
+        a.setFirstName(txtFirstName.getText());
+
+        if (txtLastName.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Last name is mandatory");
+            return false;
+        }
+        a.setLastName(txtLastName.getText());
+
+        if (txtAddress.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Address is mandatory");
+            return false;
+        }
+        a.setAddress(txtAddress.getText());
+
+        if (txtPhoneNumber.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Phone number is mandatory");
+            return false;
+        }
+        a.setPhoneNumber(txtPhoneNumber.getText());
+
+        if (txtEmail.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Email is mandatory");
+            return false;
+        }
+
+        EmailValidator emailValidator = EmailValidator.getInstance();
+        if (!emailValidator.isValid(txtEmail.getText())) {
+            error(txtEmail, "Input of valid email is mandatory");
+            return false;
+        }
+
+        a.setEmail(txtEmail.getText());
+
+        if (txtPersonalIdentificationNumber.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Personal identification number is mandatory");
+            return false;
+        }
+        a.setPersonalIdentificationNumber(txtPersonalIdentificationNumber.getText());
+
+        if (txtApplicantCv.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Applicant cv is mandatory");
+            return false;
+        }
+        a.setApplicantCV(txtApplicantCv.getText());
+
+        if (txtMotivationalLetter.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "MotivationalLetter is mandatory");
+            return false;
+        }
+        a.setMotivationalLetter(txtMotivationalLetter.getText());
+        return true;
+    }
+
+    private void ListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListValueChanged
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+        Applicant a = List.getSelectedValue();
+        if (a == null) {
+            return;
+        }
+        txtFirstName.setText(a.getFirstName());
+        txtLastName.setText(a.getLastName());
+        txtAddress.setText(a.getAddress() == null ? "" : a.getAddress());
+        txtPhoneNumber.setText(a.getPhoneNumber() == null ? "" : a.getPhoneNumber());
+        txtEmail.setText(a.getEmail() == null ? "" : a.getEmail());
+        txtPersonalIdentificationNumber.setText(a.getPersonalIdentificationNumber() == null ? "" : a.getPersonalIdentificationNumber());
+        txtApplicantCv.setText(a.getApplicantCV() == null ? "" : a.getApplicantCV());
+        txtMotivationalLetter.setText(a.getMotivationalLetter() == null ? "" : a.getMotivationalLetter());
+    }//GEN-LAST:event_ListValueChanged
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Applicant a = List.getSelectedValue();
+        if (a == null) {
+            JOptionPane.showMessageDialog(null, "First choose item");
+            return;
+        }
+        save(a);
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        Applicant a = List.getSelectedValue();
+        if (a == null) {
+            JOptionPane.showMessageDialog(null, "First choose item");
+            return;
+        }
+        if (JOptionPane.showConfirmDialog(
+                null,
+                "Safe to delete" + " " + a.getFirstName() + " " + a.getLastName(), 
+                "Delete applicant",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE)
+                == JOptionPane.NO_OPTION) {
+            return;
+        }
+        try {
+            processing.delete(a);
+        } catch (JelenaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return;
+        }
+
+        load();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<Applicant> List;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAddress;
@@ -246,4 +408,28 @@ public class FormApplicant extends javax.swing.JFrame {
     private javax.swing.JTextField txtPersonalIdentificationNumber;
     private javax.swing.JTextField txtPhoneNumber;
     // End of variables declaration//GEN-END:variables
+
+    private void error(JComponent component, String message) {
+        JOptionPane.showMessageDialog(null, message);
+        component.setBackground(Color.RED);
+        component.setForeground(Color.WHITE);
+        component.requestFocus();
+
+    }
+
+    private void load() {
+        DefaultListModel<Applicant> model = new DefaultListModel<>();
+        processing.getEntitys().forEach(
+                (applicant) -> {
+                    model.addElement(applicant);
+                });
+        List.setModel(model);
+        List.repaint();
+    }
+
+    @Override
+    public void list() {
+        super.list();
+    }
+
 }

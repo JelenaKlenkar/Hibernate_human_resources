@@ -6,8 +6,10 @@
 package human_resources.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -24,6 +26,9 @@ public class Applicant extends Entity_ implements Serializable {
     private String personalIdentificationNumber;
     private String applicantCV;
     private String motivationalLetter;
+    
+    @OneToMany(mappedBy = "applicant")
+    private List<JobApplication> jobApplications = new ArrayList<>();
 
     public Applicant() {
         super();
@@ -105,4 +110,9 @@ public class Applicant extends Entity_ implements Serializable {
         this.motivationalLetter = motivationalLetter;
     }
 
+    @Override
+    public String toString() {
+         return getFirstName() + " " + getLastName();
+    }
+ 
 }

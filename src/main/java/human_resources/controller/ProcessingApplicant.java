@@ -71,7 +71,7 @@ public class ProcessingApplicant extends Processing<Applicant> {
     private void controlAddress(Applicant entity_) throws JelenaException {
         if (entity_.getAddress() == null || entity_.getAddress().length() == 0) {
             throw new JelenaException("Address needs to be entered");
-        }
+      }
         if (entity_.getAddress().length() > 50) {
             throw new JelenaException("Address cannot contain more then 50 letters");
 
@@ -86,7 +86,7 @@ public class ProcessingApplicant extends Processing<Applicant> {
         for (char ch : entity_.getPhoneNumber().toCharArray()) {
 
             if (!Character.isDigit(ch)) {
-                throw new JelenaException("You need to enter number");
+                throw new JelenaException("Phone number: You need to enter number");
 
             }
 
