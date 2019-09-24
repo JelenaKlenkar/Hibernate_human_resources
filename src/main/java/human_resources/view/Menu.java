@@ -205,27 +205,27 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jmAboutProgramActionPerformed
 
     private void btnApplicantsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplicantsActionPerformed
-        new FormApplicant().setVisible(true);
+        new FormApplicants().setVisible(true);
     }//GEN-LAST:event_btnApplicantsActionPerformed
 
     private void btnJobApplicationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJobApplicationsActionPerformed
-        new FormJobApplication().setVisible(true);
+        new FormJobApplications().setVisible(true);
     }//GEN-LAST:event_btnJobApplicationsActionPerformed
 
     private void btnJobPositionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJobPositionsActionPerformed
-        new FormJobPosition().setVisible(true);
+        new FormJobPositions().setVisible(true);
     }//GEN-LAST:event_btnJobPositionsActionPerformed
 
     private void btnTestingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestingsActionPerformed
-        new FormTesting().setVisible(true);
+        new FormTestings().setVisible(true);
     }//GEN-LAST:event_btnTestingsActionPerformed
 
     private void btnInterviewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInterviewsActionPerformed
-        new FormInterview().setVisible(true);
+        new FormInterviews().setVisible(true);
     }//GEN-LAST:event_btnInterviewsActionPerformed
 
     private void btnJobOffersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJobOffersActionPerformed
-        new FormJobOffer().setVisible(true);
+        new FormJobOffers().setVisible(true);
     }//GEN-LAST:event_btnJobOffersActionPerformed
 
     private class Time extends Thread {

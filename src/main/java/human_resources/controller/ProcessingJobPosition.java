@@ -16,7 +16,7 @@ import java.util.List;
 public class ProcessingJobPosition extends Processing<JobPosition> {
 
     public List<JobPosition> getEntitys() {
-        return session.createQuery("from JopPosition").list();
+        return session.createQuery("from JobPosition").list();
     }
 
     @Override

@@ -11,14 +11,14 @@ import human_resources.utility.Utility;
  *
  * @author Jelena
  */
-public class FormJobOffer extends javax.swing.JFrame {
+public class FormInterviews extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormJobOffer
+     * Creates new form FormInterview
      */
-    public FormJobOffer() {
+    public FormInterviews() {
         initComponents();
-        setTitle(Utility.getNameOfApplication() + " Job offers");
+        setTitle(Utility.getNameOfApplication() + " Interviews");
     }
 
     /**
@@ -46,7 +46,6 @@ public class FormJobOffer extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

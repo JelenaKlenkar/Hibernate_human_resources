@@ -11,14 +11,14 @@ import human_resources.utility.Utility;
  *
  * @author Jelena
  */
-public class FormTesting extends javax.swing.JFrame {
+public class FormJobOffers extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormTesting
+     * Creates new form FormJobOffer
      */
-    public FormTesting() {
+    public FormJobOffers() {
         initComponents();
-        setTitle(Utility.getNameOfApplication() + " Testings");
+        setTitle(Utility.getNameOfApplication() + " Job offers");
     }
 
     /**

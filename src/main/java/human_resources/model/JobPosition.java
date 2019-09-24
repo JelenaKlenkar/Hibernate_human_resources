@@ -6,8 +6,11 @@
 package human_resources.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
@@ -18,6 +21,8 @@ public class JobPosition extends Entity_ implements Serializable {
 
     private String nameOfJobPosition;
     private String jobDescription;
+    
+    
 
     public JobPosition() {
         super();
@@ -44,5 +49,13 @@ public class JobPosition extends Entity_ implements Serializable {
     public void setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
     }
+
+    @Override
+    public String toString() {
+        return nameOfJobPosition;
+    }
+    
+    
+    
 
 }

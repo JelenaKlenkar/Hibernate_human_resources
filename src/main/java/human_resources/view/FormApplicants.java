@@ -21,18 +21,28 @@ import org.apache.commons.validator.routines.EmailValidator;
  *
  * @author Jelena
  */
-public class FormApplicant extends javax.swing.JFrame {
+public class FormApplicants extends javax.swing.JFrame {
 
     /**
      * Creates new form FormApplicant
      */
     private ProcessingApplicant processing;
 
-    public FormApplicant() {
+    public FormApplicants() {
         initComponents();
         setTitle(Utility.getNameOfApplication() + " Applicants");
         processing = new ProcessingApplicant();
         load();
+    }
+
+    private void load() {
+        DefaultListModel<Applicant> model = new DefaultListModel<>();
+        processing.getEntitys().forEach(
+                (applicant) -> {
+                    model.addElement(applicant);
+                });
+        List.setModel(model);
+        List.repaint();
     }
 
     /**
@@ -69,7 +79,7 @@ public class FormApplicant extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Information"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier New", 2, 12))); // NOI18N
 
         lblFirstName.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblFirstName.setText("First name:");
@@ -274,29 +284,56 @@ public class FormApplicant extends javax.swing.JFrame {
     }
 
     private boolean control(Applicant a) {
+        return controlFirstName(a)
+                && controlLastName(a)
+                && controlAddress(a)
+                && controlPhoneNumber(a)
+                && controlEmail(a)
+                && controlPersonalIdentificationNumber(a)
+                && controlApplicantCV(a)
+                && controlMotivationalLetter(a);
+    }
+
+    private boolean controlFirstName(Applicant a) {
+
         if (txtFirstName.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "First name is mandatory");
             return false;
         }
         a.setFirstName(txtFirstName.getText());
+        return true;
+    }
+
+    private boolean controlLastName(Applicant a) {
 
         if (txtLastName.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Last name is mandatory");
             return false;
         }
         a.setLastName(txtLastName.getText());
+        return true;
+    }
 
+    private boolean controlAddress(Applicant a) {
         if (txtAddress.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Address is mandatory");
             return false;
         }
         a.setAddress(txtAddress.getText());
+        return true;
+    }
+
+    private boolean controlPhoneNumber(Applicant a) {
 
         if (txtPhoneNumber.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Phone number is mandatory");
             return false;
         }
         a.setPhoneNumber(txtPhoneNumber.getText());
+        return true;
+    }
+
+    private boolean controlEmail(Applicant a) {
 
         if (txtEmail.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Email is mandatory");
@@ -310,18 +347,30 @@ public class FormApplicant extends javax.swing.JFrame {
         }
 
         a.setEmail(txtEmail.getText());
+        return true;
+    }
+
+    private boolean controlPersonalIdentificationNumber(Applicant a) {
 
         if (txtPersonalIdentificationNumber.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Personal identification number is mandatory");
             return false;
         }
         a.setPersonalIdentificationNumber(txtPersonalIdentificationNumber.getText());
+        return true;
+    }
+
+    private boolean controlApplicantCV(Applicant a) {
 
         if (txtApplicantCv.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Applicant cv is mandatory");
             return false;
         }
         a.setApplicantCV(txtApplicantCv.getText());
+        return true;
+    }
+
+    private boolean controlMotivationalLetter(Applicant a) {
 
         if (txtMotivationalLetter.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "MotivationalLetter is mandatory");
@@ -339,6 +388,11 @@ public class FormApplicant extends javax.swing.JFrame {
         if (a == null) {
             return;
         }
+        setValues(a);
+    }
+
+    private void setValues(Applicant a) {
+
         txtFirstName.setText(a.getFirstName());
         txtLastName.setText(a.getLastName());
         txtAddress.setText(a.getAddress() == null ? "" : a.getAddress());
@@ -366,7 +420,7 @@ public class FormApplicant extends javax.swing.JFrame {
         }
         if (JOptionPane.showConfirmDialog(
                 null,
-                "Safe to delete" + " " + a.getFirstName() + " " + a.getLastName(), 
+                "Safe to delete" + " " + a.getFirstName() + " " + a.getLastName(),
                 "Delete applicant",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE)
@@ -415,21 +469,6 @@ public class FormApplicant extends javax.swing.JFrame {
         component.setForeground(Color.WHITE);
         component.requestFocus();
 
-    }
-
-    private void load() {
-        DefaultListModel<Applicant> model = new DefaultListModel<>();
-        processing.getEntitys().forEach(
-                (applicant) -> {
-                    model.addElement(applicant);
-                });
-        List.setModel(model);
-        List.repaint();
-    }
-
-    @Override
-    public void list() {
-        super.list();
     }
 
 }
