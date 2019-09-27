@@ -16,17 +16,13 @@ import javax.persistence.OneToMany;
  * @author Jelena
  */
 @Entity
-public class Applicant extends Entity_ implements Serializable {
+public class Applicant extends Person implements Serializable {
 
-    private String firstName;
-    private String lastName;
     private String address;
     private String phoneNumber;
-    private String email;
-    private String personalIdentificationNumber;
     private String applicantCV;
     private String motivationalLetter;
-    
+
     @OneToMany(mappedBy = "applicant")
     private List<JobApplication> jobApplications = new ArrayList<>();
 
@@ -34,32 +30,12 @@ public class Applicant extends Entity_ implements Serializable {
         super();
     }
 
-    public Applicant(String firstName, String lastName, String address, String phoneNumber, String email, String personalIdentificationNumber, String applicantCV, String motivationalLetter, Integer id) {
-        super(id);
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Applicant(String address, String phoneNumber, String applicantCV, String motivationalLetter, Integer id, String firstName, String lastName, String email, String personalIdentificationNumber) {
+        super(id, firstName, lastName, email, personalIdentificationNumber);
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.personalIdentificationNumber = personalIdentificationNumber;
         this.applicantCV = applicantCV;
         this.motivationalLetter = motivationalLetter;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -78,22 +54,6 @@ public class Applicant extends Entity_ implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPersonalIdentificationNumber() {
-        return personalIdentificationNumber;
-    }
-
-    public void setPersonalIdentificationNumber(String personalIdentificationNumber) {
-        this.personalIdentificationNumber = personalIdentificationNumber;
-    }
-
     public String getApplicantCV() {
         return applicantCV;
     }
@@ -110,9 +70,12 @@ public class Applicant extends Entity_ implements Serializable {
         this.motivationalLetter = motivationalLetter;
     }
 
-    @Override
-    public String toString() {
-         return getFirstName() + " " + getLastName();
+    public List<JobApplication> getJobApplications() {
+        return jobApplications;
     }
- 
+
+    public void setJobApplications(List<JobApplication> jobApplications) {
+        this.jobApplications = jobApplications;
+    }
+
 }

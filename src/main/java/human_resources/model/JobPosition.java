@@ -17,18 +17,16 @@ import javax.persistence.Table;
  * @author Jelena
  */
 @Entity
-public class JobPosition extends Entity_ implements Serializable {
+public class JobPosition extends human_resources.model.Entity implements Serializable {
 
     private String nameOfJobPosition;
     private String jobDescription;
-    
-    
 
     public JobPosition() {
         super();
     }
 
-    public JobPosition(String nameOfJobPosition, String jobDescription, Integer id) {
+    public JobPosition(Integer id, String nameOfJobPosition, String jobDescription) {
         super(id);
         this.nameOfJobPosition = nameOfJobPosition;
         this.jobDescription = jobDescription;
@@ -54,8 +52,5 @@ public class JobPosition extends Entity_ implements Serializable {
     public String toString() {
         return nameOfJobPosition;
     }
-    
-    
-    
 
 }

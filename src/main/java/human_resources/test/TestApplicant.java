@@ -21,7 +21,7 @@ public class TestApplicant {
 
         Applicant a = new Applicant();
 
-        a.setFirstName("Ana");
+        a.setAddress("Vijenac Ivana Meštrovića 50");
 
         ProcessingApplicant processing = new ProcessingApplicant();
 
@@ -44,7 +44,7 @@ public class TestApplicant {
         }
 
         for (Applicant applicant : processing.getEntitys()) {
-            System.out.println(applicant.getId() + ": " + applicant.getFirstName());
+            System.out.println(applicant.getId() + ": " + applicant.getAddress());
             try {
                 processing.delete(a);
             } catch (JelenaException e) {

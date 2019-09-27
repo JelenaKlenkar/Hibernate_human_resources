@@ -14,16 +14,16 @@ import javax.persistence.MappedSuperclass;
  * @author Jelena
  */
 @MappedSuperclass
-public abstract class Entity_ {
+public abstract class Entity {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    public Entity_() {
+    public Entity() {
     }
 
-    public Entity_(Integer id) {
+    public Entity(Integer id) {
         this.id = id;
     }
 

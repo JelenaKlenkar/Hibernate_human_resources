@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
  * @author Jelena
  */
 @Entity
-public class Testing extends Entity_ implements Serializable {
+public class Testing extends human_resources.model.Entity implements Serializable {
 
     private String typeOfTesting;
     private Date dateOfTesting;
@@ -29,7 +29,7 @@ public class Testing extends Entity_ implements Serializable {
         super();
     }
 
-    public Testing(String typeOfTesting, Date dateOfTesting, Integer numberOfTesting, Integer ResultOfTesting, JobApplication jobApplications, Integer id) {
+    public Testing(Integer id, String typeOfTesting, Date dateOfTesting, Integer numberOfTesting, Integer ResultOfTesting, JobApplication jobApplications) {
         super(id);
         this.typeOfTesting = typeOfTesting;
         this.dateOfTesting = dateOfTesting;

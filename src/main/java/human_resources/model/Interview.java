@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
  * @author Jelena
  */
 @Entity
-public class Interview extends Entity_ implements Serializable {
+public class Interview extends human_resources.model.Entity implements Serializable {
 
     private String typeOfInterview;
     private Date dateOfInterview;
@@ -29,7 +29,7 @@ public class Interview extends Entity_ implements Serializable {
         super();
     }
 
-    public Interview(String typeOfInterview, Date dateOfInterview, Integer numberOfInterview, JobApplication jobApplications, Integer id) {
+    public Interview(Integer id, String typeOfInterview, Date dateOfInterview, Integer numberOfInterview, JobApplication jobApplications) {
         super(id);
         this.typeOfInterview = typeOfInterview;
         this.dateOfInterview = dateOfInterview;

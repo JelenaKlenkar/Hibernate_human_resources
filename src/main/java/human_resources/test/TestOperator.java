@@ -18,15 +18,13 @@ public class TestOperator {
     public static void test() {
 
         Operator o = new Operator();
-        o.setFirstName("Jelena");
-        o.setLastName("Klenkar");
-        o.setEmail("jelena.klenkar@gmail.com");
+
         o.setPassword(BCrypt.hashpw("ja", BCrypt.gensalt()));
 
         ProcessingOperator processing = new ProcessingOperator();
 
         try {
-          processing.save(o);
+            processing.save(o);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

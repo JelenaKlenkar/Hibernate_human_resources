@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
  * @author Jelena
  */
 @Entity
-public class JobOffer extends Entity_ implements Serializable {
+public class JobOffer extends human_resources.model.Entity implements Serializable {
 
     private BigDecimal salary;
     private Date startingDate;
@@ -29,7 +29,7 @@ public class JobOffer extends Entity_ implements Serializable {
         super();
     }
 
-    public JobOffer(BigDecimal salary, Date startingDate, boolean accept, JobApplication jobApplications, Integer id) {
+    public JobOffer(Integer id, BigDecimal salary, Date startingDate, boolean accept, JobApplication jobApplications) {
         super(id);
         this.salary = salary;
         this.startingDate = startingDate;

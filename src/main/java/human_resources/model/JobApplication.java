@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
  * @author Jelena
  */
 @Entity
-public class JobApplication extends Entity_ implements Serializable {
+public class JobApplication extends human_resources.model.Entity implements Serializable {
 
     private Date dateOfReceive;
     private Date timeOfReceive;
@@ -32,7 +32,7 @@ public class JobApplication extends Entity_ implements Serializable {
         super();
     }
 
-    public JobApplication(Date dateOfReceive, Date timeOfReceive, Integer numberOfApplication, Applicant applicant, JobPosition jobposition, Integer id) {
+    public JobApplication(Integer id, Date dateOfReceive, Date timeOfReceive, Integer numberOfApplication, Applicant applicant, JobPosition jobposition) {
         super(id);
         this.dateOfReceive = dateOfReceive;
         this.timeOfReceive = timeOfReceive;
