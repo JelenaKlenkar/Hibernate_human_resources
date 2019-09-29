@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Jelena
  */
-public class ProcessingOperator extends Processing<Operator> {
+public class ProcessingOperator extends ProcessingPerson<Operator> {
 
    
 

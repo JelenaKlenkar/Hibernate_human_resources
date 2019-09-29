@@ -21,7 +21,7 @@ import org.apache.commons.validator.routines.EmailValidator;
  *
  * @author Jelena
  */
-public class FormApplicants extends javax.swing.JFrame {
+public class FormApplicants extends JelenaView<Applicant> {
 
     /**
      * Creates new form FormApplicant
@@ -35,7 +35,7 @@ public class FormApplicants extends javax.swing.JFrame {
         load();
     }
 
-    private void load() {
+    protected void load() {
         DefaultListModel<Applicant> model = new DefaultListModel<>();
         processing.getEntitys().forEach(
                 (applicant) -> {
@@ -268,7 +268,7 @@ public class FormApplicants extends javax.swing.JFrame {
         save(a);
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void save(Applicant a) {
+    protected void save(Applicant a) {
         if (!control(a)) {
             return;
 
@@ -283,7 +283,7 @@ public class FormApplicants extends javax.swing.JFrame {
         load();
     }
 
-    private boolean control(Applicant a) {
+    protected boolean control(Applicant a) {
         return controlFirstName(a)
                 && controlLastName(a)
                 && controlAddress(a)
@@ -391,7 +391,7 @@ public class FormApplicants extends javax.swing.JFrame {
         setValues(a);
     }
 
-    private void setValues(Applicant a) {
+    protected void setValues(Applicant a) {
 
         txtFirstName.setText(a.getFirstName());
         txtLastName.setText(a.getLastName());

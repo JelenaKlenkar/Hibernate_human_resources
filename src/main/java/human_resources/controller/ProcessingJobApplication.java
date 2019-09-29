@@ -20,31 +20,31 @@ public class ProcessingJobApplication extends Processing<JobApplication> {
     }
 
     @Override
-    protected void controlSave(JobApplication entity_) throws JelenaException {
-        controlDateOfReceive(entity_);
-        controlTimeOfReceive(entity_);
-        controlNumberOfApplication(entity_);
+    protected void controlSave(JobApplication entity) throws JelenaException {
+        controlDateOfReceive(entity);
+        controlTimeOfReceive(entity);
+        controlNumberOfApplication(entity);
     }
 
     @Override
-    protected void controlDelete(JobApplication entity_) throws JelenaException {
+    protected void controlDelete(JobApplication entity) throws JelenaException {
 
     }
 
-    private void controlDateOfReceive(JobApplication entity_) throws JelenaException {
-        if (entity_.getDateOfReceive() == null || entity_.getDateOfReceive().toString().length() == 0) {
+    private void controlDateOfReceive(JobApplication entity) throws JelenaException {
+        if (entity.getDateOfReceive() == null || entity.getDateOfReceive().toString().length() == 0) {
             throw new JelenaException("Date of receive needs to be entered");
         }
     }
 
-    private void controlTimeOfReceive(JobApplication entity_) throws JelenaException {
-        if (entity_.getTimeOfReceive() == null || entity_.getTimeOfReceive().toString().length() == 0) {
+    private void controlTimeOfReceive(JobApplication entity) throws JelenaException {
+        if (entity.getTimeOfReceive() == null || entity.getTimeOfReceive().toString().length() == 0) {
             throw new JelenaException("Time of receive needs to be entered");
         }
     }
 
-    private void controlNumberOfApplication(JobApplication entity_) throws JelenaException {
-        if (entity_.getNumberOfApplication() == null || entity_.getNumberOfApplication().toString().length() == 0) {
+    private void controlNumberOfApplication(JobApplication entity) throws JelenaException {
+        if (entity.getNumberOfApplication() == null || entity.getNumberOfApplication().toString().length() == 0) {
             throw new JelenaException("Number of application needs to be entered");
         }
     }

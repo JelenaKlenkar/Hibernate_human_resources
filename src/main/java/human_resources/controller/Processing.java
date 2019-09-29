@@ -16,9 +16,9 @@ import org.hibernate.Session;
  */
 public abstract class Processing<T> {
 
-    protected abstract void controlSave(T entity_) throws JelenaException;
+    protected abstract void controlSave(T entity) throws JelenaException;
 
-    protected abstract void controlDelete(T entity_) throws JelenaException;
+    protected abstract void controlDelete(T entity) throws JelenaException;
 
     public abstract List<T> getEntitys();
 
@@ -28,18 +28,18 @@ public abstract class Processing<T> {
         this.session = HibernateUtil.getSession();
     }
 
-    public T save(T entity_) throws JelenaException {
-        controlSave(entity_);
+    public T save(T entity) throws JelenaException {
+        controlSave(entity);
         session.beginTransaction();
-        session.save(entity_);
+        session.save(entity);
         session.getTransaction().commit();
-        return entity_;
+        return entity;
     }
 
-    public void delete(T entity_) throws JelenaException {
-        controlSave(entity_);
+    public void delete(T entity) throws JelenaException {
+        controlSave(entity);
         session.beginTransaction();
-        session.delete(entity_);
+        session.delete(entity);
         session.getTransaction().commit();
 
     }

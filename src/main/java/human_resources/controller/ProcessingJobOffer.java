@@ -20,30 +20,30 @@ public class ProcessingJobOffer extends Processing<JobOffer> {
     }
 
     @Override
-    protected void controlSave(JobOffer entity_) throws JelenaException {
-        controlSalary(entity_);
-        controlStartingDate(entity_);
-        controlAccept(entity_);
+    protected void controlSave(JobOffer entity) throws JelenaException {
+        controlSalary(entity);
+        controlStartingDate(entity);
+        controlAccept(entity);
     }
 
     @Override
-    protected void controlDelete(JobOffer entity_) throws JelenaException {
+    protected void controlDelete(JobOffer entity) throws JelenaException {
         
     }
 
-    private void controlSalary(JobOffer entity_) throws JelenaException {
-        if (entity_.getSalary() == null || entity_.getSalary().toString().length() == 0) {
+    private void controlSalary(JobOffer entity) throws JelenaException {
+        if (entity.getSalary() == null || entity.getSalary().toString().length() == 0) {
             throw new JelenaException("Salary needs to be entered");
         }
     }
 
-    private void controlStartingDate(JobOffer entity_) throws JelenaException{
-        if (entity_.getStartingDate() == null || entity_.getStartingDate().toString().length() == 0) {
+    private void controlStartingDate(JobOffer entity) throws JelenaException{
+        if (entity.getStartingDate() == null || entity.getStartingDate().toString().length() == 0) {
             throw new JelenaException("Starting date needs to be entered");
         }
     }
 
-    private void controlAccept(JobOffer entity_) throws JelenaException {
+    private void controlAccept(JobOffer entity) throws JelenaException {
        
     }
     

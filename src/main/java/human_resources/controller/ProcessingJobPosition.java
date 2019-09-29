@@ -20,34 +20,34 @@ public class ProcessingJobPosition extends Processing<JobPosition> {
     }
 
     @Override
-    protected void controlSave(JobPosition entity_) throws JelenaException {
-        controlNameOfJobPosition(entity_);
-        controlJobDescription(entity_);
+    protected void controlSave(JobPosition entity) throws JelenaException {
+        controlNameOfJobPosition(entity);
+        controlJobDescription(entity);
     }
 
     @Override
-    protected void controlDelete(JobPosition entity_) throws JelenaException {
-
+    protected void controlDelete(JobPosition entity) throws JelenaException {
+     
     }
 
-    private void controlNameOfJobPosition(JobPosition entity_) throws JelenaException {
-        if (entity_.getNameOfJobPosition() == null || entity_.getNameOfJobPosition().length() == 0) {
+    private void controlNameOfJobPosition(JobPosition entity) throws JelenaException {
+        if (entity.getNameOfJobPosition() == null || entity.getNameOfJobPosition().length() == 0) {
 
             throw new JelenaException("Name of job position needs to be entered");
 
         }
-        if (entity_.getNameOfJobPosition().length() > 100) {
+        if (entity.getNameOfJobPosition().length() > 100) {
             throw new JelenaException("Name of job position cannot contain more then 100 characters");
         }
     }
 
-    private void controlJobDescription(JobPosition entity_) throws JelenaException {
-        if (entity_.getJobDescription() == null || entity_.getJobDescription().length() == 0) {
+    private void controlJobDescription(JobPosition entity) throws JelenaException {
+        if (entity.getJobDescription() == null || entity.getJobDescription().length() == 0) {
 
             throw new JelenaException("Job description needs to be entered");
 
         }
-        if (entity_.getJobDescription().length() > 500) {
+        if (entity.getJobDescription().length() > 500) {
             throw new JelenaException("Job description cannot contain more then 500 characters");
         }
     }

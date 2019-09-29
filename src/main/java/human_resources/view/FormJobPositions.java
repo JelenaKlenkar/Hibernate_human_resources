@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author Jelena
  */
-public class FormJobPositions extends javax.swing.JFrame {
+public class FormJobPositions extends JelenaView<JobPosition> {
 
     /**
      * Creates new form FormJobPosition
@@ -30,7 +30,7 @@ public class FormJobPositions extends javax.swing.JFrame {
         load();
     }
 
-    private void load() {
+    protected void load() {
         DefaultListModel<JobPosition> model = new DefaultListModel<>();
         processing.getEntitys().forEach(
                 (jobPosition) -> {
@@ -179,7 +179,7 @@ public class FormJobPositions extends javax.swing.JFrame {
         save(jp);
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void setValues(JobPosition jp) {
+    protected void setValues(JobPosition jp) {
 
         txtNameOfJobPosition.setText(jp.getNameOfJobPosition());
         txtJobDescription.setText(jp.getJobDescription());
@@ -215,7 +215,7 @@ public class FormJobPositions extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(
                 null,
                 "Safe to delete" + " " + jp.getNameOfJobPosition(),
-                "Delete applicant",
+                "Delete job position",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE)
                 == JOptionPane.NO_OPTION) {
@@ -246,7 +246,7 @@ public class FormJobPositions extends javax.swing.JFrame {
     private javax.swing.JTextField txtNameOfJobPosition;
     // End of variables declaration//GEN-END:variables
 
-    private void save(JobPosition jp) {
+    protected void save(JobPosition jp) {
         if (!control(jp)) {
             return;
         }
@@ -260,7 +260,7 @@ public class FormJobPositions extends javax.swing.JFrame {
         load();
     }
 
-    private boolean control(JobPosition jp) {
+    protected boolean control(JobPosition jp) {
         return controlNameOfJobPosition(jp)
                 && controlJobDescription(jp);
     }
@@ -280,6 +280,10 @@ public class FormJobPositions extends javax.swing.JFrame {
             return false;
         }
         jp.setJobDescription(txtJobDescription.getText());
+        if (txtJobDescription.getText().length() > 500) {
+            JOptionPane.showMessageDialog(null,"Job description cannot contain more then 500 characters");
+        }
+        
         return true;
     }
 }

@@ -20,44 +20,44 @@ public class ProcessingTesting extends Processing<Testing> {
     }
 
     @Override
-    protected void controlSave(Testing entity_) throws JelenaException {
-        controlTypeOfTesting(entity_);
-        controlDateOfTesting(entity_);
-        controlNumberOfTesting(entity_);
-        controlResultOfTesting(entity_);
+    protected void controlSave(Testing entity) throws JelenaException {
+        controlTypeOfTesting(entity);
+        controlDateOfTesting(entity);
+        controlNumberOfTesting(entity);
+        controlResultOfTesting(entity);
     }
 
     @Override
-    protected void controlDelete(Testing entity_) throws JelenaException {
+    protected void controlDelete(Testing entity) throws JelenaException {
 
     }
 
-    private void controlTypeOfTesting(Testing entity_) throws JelenaException {
-        if (entity_.getTypeOfTesting() == null || entity_.getTypeOfTesting().length() == 0) {
+    private void controlTypeOfTesting(Testing entity) throws JelenaException {
+        if (entity.getTypeOfTesting() == null || entity.getTypeOfTesting().length() == 0) {
 
             throw new JelenaException("Type of testing needs to be entered");
         }
-        if (entity_.getTypeOfTesting().length() > 100) {
+        if (entity.getTypeOfTesting().length() > 100) {
             throw new JelenaException("Type of testing cannot contain more then 100 letters");
         }
     }
 
-    private void controlDateOfTesting(Testing entity_) throws JelenaException {
-        if (entity_.getDateOfTesting() == null || entity_.getDateOfTesting().toString().length() == 0) {
+    private void controlDateOfTesting(Testing entity) throws JelenaException {
+        if (entity.getDateOfTesting() == null || entity.getDateOfTesting().toString().length() == 0) {
             throw new JelenaException("Number of interview needs to be entered");
         }
     }
 
-    private void controlNumberOfTesting(Testing entity_) throws JelenaException {
+    private void controlNumberOfTesting(Testing entity) throws JelenaException {
 
-        if (entity_.getNumberOfTesting() == null || entity_.getNumberOfTesting().toString().length() == 0) {
+        if (entity.getNumberOfTesting() == null || entity.getNumberOfTesting().toString().length() == 0) {
             throw new JelenaException("Number of testing needs to be entered");
         }
 
     }
 
-    private void controlResultOfTesting(Testing entity_) throws JelenaException {
-        if (entity_.getResultOfTesting() == null || entity_.getResultOfTesting().toString().length() == 0) {
+    private void controlResultOfTesting(Testing entity) throws JelenaException {
+        if (entity.getResultOfTesting() == null || entity.getResultOfTesting().toString().length() == 0) {
             throw new JelenaException("Result of testing needs to be entered");
         }
     }

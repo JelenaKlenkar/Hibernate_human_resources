@@ -21,36 +21,36 @@ public class ProcessingInterview extends Processing<Interview> {
     }
 
     @Override
-    protected void controlSave(Interview entity_) throws JelenaException {
-        controlTypeOfInterview(entity_);
-        controlDateOfInterview(entity_);
-        controlNumberOfInterview(entity_);
+    protected void controlSave(Interview entity) throws JelenaException {
+        controlTypeOfInterview(entity);
+        controlDateOfInterview(entity);
+        controlNumberOfInterview(entity);
     }
 
     @Override
-    protected void controlDelete(Interview entity_) throws JelenaException {
+    protected void controlDelete(Interview entity) throws JelenaException {
 
     }
 
-    private void controlTypeOfInterview(Interview entity_) throws JelenaException {
-        if (entity_.getTypeOfInterview() == null || entity_.getTypeOfInterview().length() == 0) {
+    private void controlTypeOfInterview(Interview entity) throws JelenaException {
+        if (entity.getTypeOfInterview() == null || entity.getTypeOfInterview().length() == 0) {
 
             throw new JelenaException("Type of interview needs to be entered");
         }
-        if (entity_.getTypeOfInterview().length() > 50) {
+        if (entity.getTypeOfInterview().length() > 50) {
             throw new JelenaException("Type of interview cannot contain more then 50 letters");
         }
     }
 
-    private void controlDateOfInterview(Interview entity_) throws JelenaException {
-        if (entity_.getDateOfInterview() == null || entity_.getDateOfInterview().toString().length() == 0) {
+    private void controlDateOfInterview(Interview entity) throws JelenaException {
+        if (entity.getDateOfInterview() == null || entity.getDateOfInterview().toString().length() == 0) {
 
             throw new JelenaException("Date of interview needs to be entered");
         }
     }
 
-    private void controlNumberOfInterview(Interview entity_) throws JelenaException {
-        if (entity_.getNumberOfInterview() == null || entity_.getNumberOfInterview().toString().length() == 0) {
+    private void controlNumberOfInterview(Interview entity) throws JelenaException {
+        if (entity.getNumberOfInterview() == null || entity.getNumberOfInterview().toString().length() == 0) {
             throw new JelenaException("Number of interview needs to be entered");
         }
     }
