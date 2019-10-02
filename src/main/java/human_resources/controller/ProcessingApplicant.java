@@ -20,6 +20,10 @@ public class ProcessingApplicant extends ProcessingPerson<Applicant> {
         return session.createQuery("from Applicant").list();
     }
 
+    public List<Applicant> getEntitys(String condition) {
+        return session.createQuery("from Applicant a where a.firstName like :condition or a.lastName like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+    }
+
     @Override
     protected void controlSave(Applicant entity) throws JelenaException {
         super.controlSave(entity);

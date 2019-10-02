@@ -61,7 +61,7 @@ public class Utility {
     private static String loadURL(String address) {
         try {
             URL url = new URL(address);
-            InputStreamReader isr = new InputStreamReader(url.openStream());
+            InputStreamReader isr = new InputStreamReader(url.openStream(),"UTF-8");
             BufferedReader br = new BufferedReader(isr);
             String line;
             StringBuilder sb = new StringBuilder();

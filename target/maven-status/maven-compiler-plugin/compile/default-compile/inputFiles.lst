@@ -13,6 +13,7 @@ C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\ja
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\model\JobPosition.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\model\Applicant.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\view\FormJobPositions.java
+C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\test\Development.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\model\Operator.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\test\TestApplicant.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\controller\ProcessingTesting.java
@@ -22,12 +23,13 @@ C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\ja
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\controller\ProcessingPerson.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\view\FormJobOffers.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\model\Testing.java
+C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\test\InitialInsert.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\controller\ProcessingJobApplication.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\view\SplashScreen.java
-C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\test\test.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\model\Interview.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\view\JelenaView.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\model\Entity.java
+C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\test\InsertApplicant.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\view\Authorisation.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\controller\ProcessingOperator.java
 C:\Users\Jelena\Documents\NetBeansProjects\Hibernate_human_resources\src\main\java\human_resources\test\TestOperator.java

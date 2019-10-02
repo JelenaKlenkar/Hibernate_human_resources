@@ -10,12 +10,19 @@ import human_resources.model.Applicant;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
 import java.awt.Color;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -32,12 +39,13 @@ public class FormApplicants extends JelenaView<Applicant> {
         initComponents();
         setTitle(Utility.getNameOfApplication() + " Applicants");
         processing = new ProcessingApplicant();
-        load();
+         btnSearch.setText("\uD83D\uDD0D");
+        //load();
     }
 
     protected void load() {
         DefaultListModel<Applicant> model = new DefaultListModel<>();
-        processing.getEntitys().forEach(
+        processing.getEntitys(txtCondition.getText().trim()).forEach(
                 (applicant) -> {
                     model.addElement(applicant);
                 });
@@ -76,6 +84,9 @@ public class FormApplicants extends JelenaView<Applicant> {
         btnDelete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         List = new javax.swing.JList<>();
+        txtCondition = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        btnExportExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -237,6 +248,21 @@ public class FormApplicants extends JelenaView<Applicant> {
         });
         jScrollPane2.setViewportView(List);
 
+        btnSearch.setText("S");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        btnExportExcel.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        btnExportExcel.setText("Export Excel");
+        btnExportExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -244,17 +270,32 @@ public class FormApplicants extends JelenaView<Applicant> {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCondition))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExportExcel)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -437,11 +478,71 @@ public class FormApplicants extends JelenaView<Applicant> {
         load();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        if(txtCondition.getText().trim().length()<2){
+            JOptionPane.showMessageDialog(null, "Minimum 2 characters");
+            return;
+        }
+        load();
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportExcelActionPerformed
+        try {
+            
+        
+        Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+
+        /* CreationHelper helps us create instances of various things like DataFormat, 
+           Hyperlink, RichTextString etc, in a format (HSSF, XSSF) independent way */
+        CreationHelper createHelper = workbook.getCreationHelper();
+
+        // Create a Sheet
+        Sheet sheet = workbook.createSheet("Applicants");
+
+       
+
+
+        // Create a Row
+        Row headerRow = sheet.createRow(0);
+
+            Cell cell = headerRow.createCell(0);
+            cell.setCellValue("First name");
+        
+            cell = headerRow.createCell(1);
+            cell.setCellValue("Last name");
+        
+            int rowNum=1;
+        for(Applicant a : processing.getEntitys()) {
+            Row row = sheet.createRow(rowNum++);
+
+            row.createCell(0)
+                    .setCellValue(a.getFirstName());
+
+            row.createCell(1)
+                    .setCellValue(a.getLastName());
+
+        }
+
+	
+        // Write the output to a file
+        FileOutputStream fileOut = new FileOutputStream("poi-generated-file.xlsx");
+        workbook.write(fileOut);
+        fileOut.close();
+
+        // Closing the workbook
+        workbook.close();
+        
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnExportExcelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<Applicant> List;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnExportExcel;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -455,6 +556,7 @@ public class FormApplicants extends JelenaView<Applicant> {
     private javax.swing.JLabel lblPhoneNumber;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtApplicantCv;
+    private javax.swing.JTextField txtCondition;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
