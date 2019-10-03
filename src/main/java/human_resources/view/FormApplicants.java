@@ -10,6 +10,7 @@ import human_resources.model.Applicant;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
 import java.awt.Color;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -525,7 +526,7 @@ public class FormApplicants extends JelenaView<Applicant> {
 
 	
         // Write the output to a file
-        FileOutputStream fileOut = new FileOutputStream("poi-generated-file.xlsx");
+        FileOutputStream fileOut = new FileOutputStream("E:" + File.separator + "poi-generated-file.xlsx");
         workbook.write(fileOut);
         fileOut.close();
 
