@@ -5,7 +5,11 @@
  */
 package human_resources.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import human_resources.controller.ProcessingJobApplication;
+import human_resources.model.JobApplication;
 import human_resources.utility.Utility;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -16,9 +20,25 @@ public class FormJobApplications extends javax.swing.JFrame {
     /**
      * Creates new form FormJobApplication
      */
+    private ProcessingJobApplication processing;
+
     public FormJobApplications() {
         initComponents();
+        ProcessingJobApplication processing = new ProcessingJobApplication();
         setTitle(Utility.getNameOfApplication() + " Job applications");
+        DatePickerSettings dps = new DatePickerSettings();
+        dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
+
+        dpDateOfReceive.setSettings(dps);
+    }
+    protected void load() {
+        DefaultListModel<JobApplication> model = new DefaultListModel<>();
+        processing.getEntitys().forEach(
+                (jobApplication) -> {
+                    model.addElement(jobApplication);
+                });
+        List.setModel(model);
+        List.repaint();
     }
 
     /**
@@ -32,9 +52,9 @@ public class FormJobApplications extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblDateOfReceive = new javax.swing.JLabel();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        dpDateOfReceive = new com.github.lgooddatepicker.components.DatePicker();
         lblTimeOfReceive = new javax.swing.JLabel();
-        timePicker1 = new com.github.lgooddatepicker.components.TimePicker();
+        tpTimeOfReceive = new com.github.lgooddatepicker.components.TimePicker();
         lblNumberOfApplication = new javax.swing.JLabel();
         txtNumberOfApplication = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -73,8 +93,8 @@ public class FormJobApplications extends javax.swing.JFrame {
                             .addComponent(lblDateOfReceive, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(dpDateOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tpTimeOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,11 +102,11 @@ public class FormJobApplications extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDateOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dpDateOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTimeOfReceive)
-                    .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tpTimeOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumberOfApplication)
@@ -123,14 +143,14 @@ public class FormJobApplications extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> List;
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private javax.swing.JList<JobApplication> List;
+    private com.github.lgooddatepicker.components.DatePicker dpDateOfReceive;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDateOfReceive;
     private javax.swing.JLabel lblNumberOfApplication;
     private javax.swing.JLabel lblTimeOfReceive;
-    private com.github.lgooddatepicker.components.TimePicker timePicker1;
+    private com.github.lgooddatepicker.components.TimePicker tpTimeOfReceive;
     private javax.swing.JTextField txtNumberOfApplication;
     // End of variables declaration//GEN-END:variables
 }

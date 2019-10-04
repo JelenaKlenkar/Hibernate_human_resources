@@ -76,8 +76,8 @@
                           </Group>
                           <EmptySpace pref="44" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="datePicker1" min="-2" max="-2" attributes="0"/>
-                              <Component id="timePicker1" min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="dpDateOfReceive" min="-2" max="-2" attributes="0"/>
+                              <Component id="tpTimeOfReceive" min="-2" pref="96" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -90,12 +90,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblDateOfReceive" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="datePicker1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dpDateOfReceive" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTimeOfReceive" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="timePicker1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tpTimeOfReceive" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -116,7 +116,7 @@
             <Property name="text" type="java.lang.String" value="Date of receive:"/>
           </Properties>
         </Component>
-        <Component class="com.github.lgooddatepicker.components.DatePicker" name="datePicker1">
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="dpDateOfReceive">
         </Component>
         <Component class="javax.swing.JLabel" name="lblTimeOfReceive">
           <Properties>
@@ -126,7 +126,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="com.github.lgooddatepicker.components.TimePicker" name="timePicker1">
+        <Component class="com.github.lgooddatepicker.components.TimePicker" name="tpTimeOfReceive">
         </Component>
         <Component class="javax.swing.JLabel" name="lblNumberOfApplication">
           <Properties>
@@ -159,7 +159,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;JobApplication&gt;"/>
           </AuxValues>
         </Component>
       </SubComponents>
