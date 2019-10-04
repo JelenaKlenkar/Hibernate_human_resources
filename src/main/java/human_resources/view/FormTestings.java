@@ -5,10 +5,13 @@
  */
 package human_resources.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import human_resources.controller.ProcessingTesting;
 import human_resources.model.Testing;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -16,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Jelena
  */
-public class FormTestings extends javax.swing.JFrame {
+public class FormTestings extends JelenaView<Testing> {
 
     /**
      * Creates new form FormTesting
@@ -27,6 +30,10 @@ public class FormTestings extends javax.swing.JFrame {
         initComponents();
         processing = new ProcessingTesting();
         setTitle(Utility.getNameOfApplication() + " Testings");
+
+        DatePickerSettings dps = new DatePickerSettings();
+        dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
+        dpDateOfTesting.setSettings(dps);
     }
 
     protected void load() {
@@ -54,7 +61,7 @@ public class FormTestings extends javax.swing.JFrame {
         lblNumberOfTesting = new javax.swing.JLabel();
         lblResultOfTesting = new javax.swing.JLabel();
         jsNumberOfTesting = new javax.swing.JSpinner();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        dpDateOfTesting = new com.github.lgooddatepicker.components.DatePicker();
         txtTypeOfTesting = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -99,7 +106,7 @@ public class FormTestings extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTypeOfTesting)
-                            .addComponent(datePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
+                            .addComponent(dpDateOfTesting, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,7 +128,7 @@ public class FormTestings extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDateOfTesting)
-                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dpDateOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,24 +137,24 @@ public class FormTestings extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(List);
 
-        btnAdd.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
 
-        btnUpdate.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnUpdate.setText("Update");
+        btnUpdate.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
-        btnDelete.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,9 +166,9 @@ public class FormTestings extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(49, 49, 49)
                         .addComponent(btnAdd)
-                        .addGap(26, 26, 26)
+                        .addGap(18, 18, 18)
                         .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -176,13 +183,13 @@ public class FormTestings extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd)
                             .addComponent(btnUpdate)
                             .addComponent(btnDelete)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,8 +197,10 @@ public class FormTestings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Testing t = new Testing();
-        save(t);
+        Date d = Utility.convertToDateViaInstant(dpDateOfTesting.getDate());
+
+        System.out.println(d);
+
     }//GEN-LAST:event_btnAddActionPerformed
 
 
@@ -200,7 +209,7 @@ public class FormTestings extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private com.github.lgooddatepicker.components.DatePicker dpDateOfTesting;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -212,7 +221,7 @@ public class FormTestings extends javax.swing.JFrame {
     private javax.swing.JTextField txtTypeOfTesting;
     // End of variables declaration//GEN-END:variables
 
-    private void save(Testing t) {
+    protected void save(Testing t) {
         if (!control(t)) {
             return;
         }
@@ -227,7 +236,7 @@ public class FormTestings extends javax.swing.JFrame {
 
     }
 
-    private boolean control(Testing t) {
+    protected boolean control(Testing t) {
         return controlTypeOfTesting(t)
                 && controlDateOfTesting(t)
                 && controlNumberOfTesting(t)
@@ -235,7 +244,7 @@ public class FormTestings extends javax.swing.JFrame {
     }
 
     private boolean controlTypeOfTesting(Testing t) {
-         if (txtTypeOfTesting.getText().trim().length() == 0) {
+        if (txtTypeOfTesting.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Type of testing is mandatory");
             return false;
         }
@@ -254,4 +263,10 @@ public class FormTestings extends javax.swing.JFrame {
     private boolean controlResultOfTesting(Testing t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    protected void setValues(Testing t) {
+        txtTypeOfTesting.setText(t.getTypeOfTesting());
+       
+}
 }

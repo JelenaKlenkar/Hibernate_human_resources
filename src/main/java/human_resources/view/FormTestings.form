@@ -30,9 +30,9 @@
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnDelete" min="-2" pref="96" max="-2" attributes="0"/>
@@ -51,7 +51,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -60,7 +60,7 @@
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="341" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,7 +91,7 @@
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtTypeOfTesting" max="32767" attributes="0"/>
-                              <Component id="datePicker1" pref="169" max="32767" attributes="0"/>
+                              <Component id="dpDateOfTesting" pref="169" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -122,7 +122,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblDateOfTesting" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="datePicker1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dpDateOfTesting" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -134,7 +134,7 @@
                       <Component id="lblResultOfTesting" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="114" max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -142,34 +142,34 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblTypeOfTesting">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Type of testing:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Courier New" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Type of testing:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDateOfTesting">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Date of testing:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Courier New" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Date of testing:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNumberOfTesting">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Number of testing:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Courier New" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Number of testing:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblResultOfTesting">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Result of testing:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Courier New" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Result of testing:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="jsNumberOfTesting">
@@ -179,7 +179,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="com.github.lgooddatepicker.components.DatePicker" name="datePicker1">
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="dpDateOfTesting">
         </Component>
         <Component class="javax.swing.JTextField" name="txtTypeOfTesting">
           <Properties>
@@ -222,10 +222,10 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Add"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Courier New" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
@@ -233,18 +233,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnUpdate">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Update"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Courier New" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Delete"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Courier New" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
     </Component>
   </SubComponents>

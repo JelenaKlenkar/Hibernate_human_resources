@@ -8,6 +8,10 @@ package human_resources.utility;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
@@ -61,23 +65,29 @@ public class Utility {
     private static String loadURL(String address) {
         try {
             URL url = new URL(address);
-            InputStreamReader isr = new InputStreamReader(url.openStream(),"UTF-8");
+            InputStreamReader isr = new InputStreamReader(url.openStream(), "UTF-8");
             BufferedReader br = new BufferedReader(isr);
             String line;
             StringBuilder sb = new StringBuilder();
-            
+
             while ((line = br.readLine()) != null) {
                 sb.append(line);
                 sb.append(System.lineSeparator());
-                
+
             }
             return sb.toString();
-           
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return null;
+    }
+
+    public static Date convertToDateViaInstant(LocalDate dateToConvert) {
+        return java.util.Date.from(dateToConvert.atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
     }
 
 }
