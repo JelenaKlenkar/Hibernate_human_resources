@@ -5,20 +5,44 @@
  */
 package human_resources.view;
 
+import com.toedter.calendar.JDateChooser;
+import human_resources.controller.ProcessingJobOffer;
+import human_resources.model.JobOffer;
+import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
+import java.util.Locale;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Jelena
  */
-public class FormJobOffers extends javax.swing.JFrame {
+public class FormJobOffers extends JelenaView<JobOffer> {
 
     /**
      * Creates new form FormJobOffer
      */
+    private ProcessingJobOffer processing;
+
     public FormJobOffers() {
         initComponents();
+        ProcessingJobOffer processing = new ProcessingJobOffer();
         setTitle(Utility.getNameOfApplication() + " Job offers");
+        JDateChooser dateChooser = new JDateChooser();
+        dateChooser.setLocale(Locale.ENGLISH);
+        dateChooser.setDateFormatString("dd.MM.yyyy");
+
+    }
+
+    protected void load() {
+        DefaultListModel<JobOffer> model = new DefaultListModel<>();
+        processing.getEntitys().forEach(
+                (jobOffer) -> {
+                    model.addElement(jobOffer);
+                });
+        List.setModel(model);
+        List.repaint();
     }
 
     /**
@@ -30,17 +54,86 @@ public class FormJobOffers extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        lblSalary = new javax.swing.JLabel();
+        txtSalary = new javax.swing.JTextField();
+        lblStartingDate = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jcbAccept = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        List = new javax.swing.JList<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier New", 2, 14))); // NOI18N
+
+        lblSalary.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        lblSalary.setText("Salary:");
+
+        txtSalary.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+        lblStartingDate.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        lblStartingDate.setText("Starting date:");
+
+        jcbAccept.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jcbAccept.setText("Accept");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jcbAccept)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblStartingDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblSalary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSalary)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblStartingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jcbAccept)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(List);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -49,5 +142,53 @@ public class FormJobOffers extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<JobOffer> List;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox jcbAccept;
+    private javax.swing.JLabel lblSalary;
+    private javax.swing.JLabel lblStartingDate;
+    private javax.swing.JTextField txtSalary;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    protected void save(JobOffer jo) {
+        if (!control(jo)) {
+            return;
+
+        }
+        try {
+            processing.save(jo);
+        } catch (JelenaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return;
+        }
+
+        load();
+    }
+
+    @Override
+    protected boolean control(JobOffer entity) {
+        return controlSalary()
+                && controlStartingDate()
+                && controlAccept();
+    }
+
+    @Override
+    protected void setValues(JobOffer entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean controlSalary() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean controlStartingDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean controlAccept() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

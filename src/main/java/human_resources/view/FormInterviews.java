@@ -8,21 +8,24 @@ package human_resources.view;
 import com.toedter.calendar.JDateChooser;
 import human_resources.controller.ProcessingInterview;
 import human_resources.model.Interview;
+import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Jelena
  */
-public class FormInterviews extends javax.swing.JFrame {
+public class FormInterviews extends JelenaView<Interview> {
 
     /**
      * Creates new form FormInterview
      */
     private ProcessingInterview processing;
+
     public FormInterviews() {
         initComponents();
         ProcessingInterview processing = new ProcessingInterview();
@@ -31,9 +34,8 @@ public class FormInterviews extends javax.swing.JFrame {
         dateChooser.setLocale(Locale.ENGLISH);
         dateChooser.setDateFormatString("dd.MM.yyyy");
     }
-        
-       
-       protected void load() {
+
+    protected void load() {
         DefaultListModel<Interview> model = new DefaultListModel<>();
         processing.getEntitys().forEach(
                 (interview) -> {
@@ -42,6 +44,7 @@ public class FormInterviews extends javax.swing.JFrame {
         List.setModel(model);
         List.repaint();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,6 +139,11 @@ public class FormInterviews extends javax.swing.JFrame {
         btnDelete.setText("Delete");
 
         List.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+        List.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(List);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,9 +187,24 @@ public class FormInterviews extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-     Date d = dcDateOfInterview.getDate();
-     System.out.println(d);
+        Date d = dcDateOfInterview.getDate();
+        System.out.println(d);
+        Interview i = new Interview();
+
+        save(i);
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void ListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListValueChanged
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+        Interview i = List.getSelectedValue();
+        if (i == null) {
+            return;
+        }
+        setValues(i);
+    
+    }//GEN-LAST:event_ListValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<Interview> List;
@@ -197,4 +220,51 @@ public class FormInterviews extends javax.swing.JFrame {
     private javax.swing.JLabel lblTypeOfInterview;
     private javax.swing.JTextField txtTypeOfInterview;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    protected void save(Interview i) {
+        if (!control(i)) {
+            return;
+
+        }
+        try {
+            processing.save(i);
+        } catch (JelenaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return;
+        }
+
+        load();
+    }
+
+    @Override
+    protected boolean control(Interview i) {
+        return controlTypeOfInterview(i)
+                && controlDateOfInterview(i)
+                && controlNumberOfInterview(i);
+
+    }
+
+    @Override
+    protected void setValues(Interview i) {
+        txtTypeOfInterview.setText(i.getTypeOfInterview());
+        
+    }
+
+    private boolean controlTypeOfInterview(Interview i) {
+        if (txtTypeOfInterview.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Type of interview is mandatory");
+            return false;
+        }
+        i.setTypeOfInterview(txtTypeOfInterview.getText());
+        return true;
+    }
+
+    private boolean controlDateOfInterview(Interview i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean controlNumberOfInterview(Interview i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -11,6 +11,7 @@ import human_resources.model.Testing;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -74,17 +75,17 @@ public class FormTestings extends JelenaView<Testing> {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier New", 2, 12))); // NOI18N
 
-        lblTypeOfTesting.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblTypeOfTesting.setText("Type of testing:");
+        lblTypeOfTesting.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
-        lblDateOfTesting.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblDateOfTesting.setText("Date of testing:");
+        lblDateOfTesting.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
-        lblNumberOfTesting.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblNumberOfTesting.setText("Number of testing:");
+        lblNumberOfTesting.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
-        lblResultOfTesting.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblResultOfTesting.setText("Result of testing:");
+        lblResultOfTesting.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         jsNumberOfTesting.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5, 1));
 
@@ -140,6 +141,11 @@ public class FormTestings extends JelenaView<Testing> {
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
+        List.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(List);
 
         btnAdd.setText("Add");
@@ -203,6 +209,18 @@ public class FormTestings extends JelenaView<Testing> {
 
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void ListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListValueChanged
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+        Testing t = List.getSelectedValue();
+        if (t == null) {
+            return;
+        }
+        setValues(t);
+
+    }//GEN-LAST:event_ListValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<Testing> List;
@@ -253,7 +271,12 @@ public class FormTestings extends JelenaView<Testing> {
     }
 
     private boolean controlDateOfTesting(Testing t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (dpDateOfTesting.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Date of testing is mandatory");
+            return false;
+        }
+
+        return true;
     }
 
     private boolean controlNumberOfTesting(Testing t) {
@@ -267,6 +290,7 @@ public class FormTestings extends JelenaView<Testing> {
     @Override
     protected void setValues(Testing t) {
         txtTypeOfTesting.setText(t.getTypeOfTesting());
-       
-}
+      
+
+    }
 }
