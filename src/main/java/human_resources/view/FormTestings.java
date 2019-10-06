@@ -168,9 +168,19 @@ public class FormTestings extends JelenaView<Testing> {
 
         btnUpdate.setText("Update");
         btnUpdate.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,6 +240,40 @@ public class FormTestings extends JelenaView<Testing> {
         setValues(t);
 
     }//GEN-LAST:event_ListValueChanged
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Testing t = List.getSelectedValue();
+        if (t == null) {
+            JOptionPane.showMessageDialog(null, "First choose item");
+            return;
+        }
+        save(t);
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        Testing t = List.getSelectedValue();
+        if (t == null) {
+            JOptionPane.showMessageDialog(null, "First choose item");
+            return;
+        }
+        if (JOptionPane.showConfirmDialog(
+                null,
+                "Safe to delete" + " " + t.getTypeOfTesting() + " " + t.getTypeOfTesting(),
+                "Delete testing",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE)
+                == JOptionPane.NO_OPTION) {
+            return;
+        }
+        try {
+            processing.delete(t);
+        } catch (JelenaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return;
+        }
+
+        load();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

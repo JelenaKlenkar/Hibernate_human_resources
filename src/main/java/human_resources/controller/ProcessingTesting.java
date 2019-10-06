@@ -29,7 +29,7 @@ public class ProcessingTesting extends Processing<Testing> {
 
     @Override
     protected void controlDelete(Testing entity) throws JelenaException {
-
+       super.delete(entity);
     }
 
     private void controlTypeOfTesting(Testing entity) throws JelenaException {

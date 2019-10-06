@@ -8,14 +8,16 @@ package human_resources.view;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import human_resources.controller.ProcessingJobApplication;
 import human_resources.model.JobApplication;
+import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Jelena
  */
-public class FormJobApplications extends javax.swing.JFrame {
+public class FormJobApplications extends JelenaView<JobApplication> {
 
     /**
      * Creates new form FormJobApplication
@@ -59,19 +61,22 @@ public class FormJobApplications extends javax.swing.JFrame {
         txtNumberOfApplication = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         List = new javax.swing.JList<>();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier New", 2, 14))); // NOI18N
 
-        lblDateOfReceive.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblDateOfReceive.setText("Date of receive:");
+        lblDateOfReceive.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         lblTimeOfReceive.setText("Time of receive:");
         lblTimeOfReceive.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
-        lblNumberOfApplication.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblNumberOfApplication.setText("Number of application:");
+        lblNumberOfApplication.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         txtNumberOfApplication.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
@@ -116,13 +121,36 @@ public class FormJobApplications extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(List);
 
+        btnAdd.setText("Add");
+        btnAdd.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        btnUpdate.setText("Update");
+
+        btnDelete.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        btnDelete.setText("Delete");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(btnAdd)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnUpdate)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnDelete)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(68, Short.MAX_VALUE))
@@ -132,7 +160,13 @@ public class FormJobApplications extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdd)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnDelete)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -141,9 +175,18 @@ public class FormJobApplications extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+       JobApplication ja=new JobApplication();
+       
+       save(ja);
+    }//GEN-LAST:event_btnAddActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<JobApplication> List;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private com.github.lgooddatepicker.components.DatePicker dpDateOfReceive;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -153,4 +196,44 @@ public class FormJobApplications extends javax.swing.JFrame {
     private com.github.lgooddatepicker.components.TimePicker tpTimeOfReceive;
     private javax.swing.JTextField txtNumberOfApplication;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    protected void save(JobApplication ja) {
+        if (!control(ja)) {
+            return;
+
+        }
+        try {
+            processing.save(ja);
+        } catch (JelenaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return;
+        }
+
+        load();
+    }
+
+    @Override
+    protected boolean control(JobApplication ja) {
+        return controlDateOfReceive(ja) &&
+                controlTimeOfReceive(ja) &&
+                controlNumberOfApplication(ja);
+    }
+
+    @Override
+    protected void setValues(JobApplication entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean controlDateOfReceive(JobApplication ja) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean controlTimeOfReceive(JobApplication ja) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private boolean controlNumberOfApplication(JobApplication ja) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
