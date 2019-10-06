@@ -40,7 +40,7 @@ public class FormApplicants extends JelenaView<Applicant> {
         initComponents();
         setTitle(Utility.getNameOfApplication() + " Applicants");
         processing = new ProcessingApplicant();
-         btnSearch.setText("\uD83D\uDD0D");
+        btnSearch.setText("\uD83D\uDD0D");
         //load();
     }
 
@@ -480,7 +480,7 @@ public class FormApplicants extends JelenaView<Applicant> {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        if(txtCondition.getText().trim().length()<2){
+        if (txtCondition.getText().trim().length() < 2) {
             JOptionPane.showMessageDialog(null, "Minimum 2 characters");
             return;
         }
@@ -489,50 +489,45 @@ public class FormApplicants extends JelenaView<Applicant> {
 
     private void btnExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportExcelActionPerformed
         try {
-            
-        
-        Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
 
-        /* CreationHelper helps us create instances of various things like DataFormat, 
+            Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+
+            /* CreationHelper helps us create instances of various things like DataFormat, 
            Hyperlink, RichTextString etc, in a format (HSSF, XSSF) independent way */
-        CreationHelper createHelper = workbook.getCreationHelper();
+            CreationHelper createHelper = workbook.getCreationHelper();
 
-        // Create a Sheet
-        Sheet sheet = workbook.createSheet("Applicants");
+            // Create a Sheet
+            Sheet sheet = workbook.createSheet("Applicants");
 
-       
-
-
-        // Create a Row
-        Row headerRow = sheet.createRow(0);
+            // Create a Row
+            Row headerRow = sheet.createRow(0);
 
             Cell cell = headerRow.createCell(0);
             cell.setCellValue("First name");
-        
+
             cell = headerRow.createCell(1);
             cell.setCellValue("Last name");
-        
-            int rowNum=1;
-        for(Applicant a : processing.getEntitys()) {
-            Row row = sheet.createRow(rowNum++);
 
-            row.createCell(0)
-                    .setCellValue(a.getFirstName());
+            int rowNum = 1;
+            for (Applicant a : processing.getEntitys()) {
+                Row row = sheet.createRow(rowNum++);
 
-            row.createCell(1)
-                    .setCellValue(a.getLastName());
+                row.createCell(0)
+                        .setCellValue(a.getFirstName());
 
-        }
+                row.createCell(1)
+                        .setCellValue(a.getLastName());
 
-	
-        // Write the output to a file
-        FileOutputStream fileOut = new FileOutputStream("E:" + File.separator + "poi-generated-file.xlsx");
-        workbook.write(fileOut);
-        fileOut.close();
+            }
 
-        // Closing the workbook
-        workbook.close();
-        
+            // Write the output to a file
+            FileOutputStream fileOut = new FileOutputStream("E:" + File.separator + "poi-generated-file.xlsx");
+            workbook.write(fileOut);
+            fileOut.close();
+
+            // Closing the workbook
+            workbook.close();
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnExportExcelActionPerformed

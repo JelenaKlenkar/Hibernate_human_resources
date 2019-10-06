@@ -65,6 +65,7 @@ public class FormTestings extends JelenaView<Testing> {
         dpDateOfTesting = new com.github.lgooddatepicker.components.DatePicker();
         txtTypeOfTesting = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
+        lblPercent = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         List = new javax.swing.JList<>();
         btnAdd = new javax.swing.JButton();
@@ -92,6 +93,11 @@ public class FormTestings extends JelenaView<Testing> {
         txtTypeOfTesting.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
         jComboBox1.setMaximumRowCount(100);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", " " }));
+
+        lblPercent.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        lblPercent.setText("%");
+        lblPercent.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,7 +121,10 @@ public class FormTestings extends JelenaView<Testing> {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -137,7 +146,8 @@ public class FormTestings extends JelenaView<Testing> {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPercent))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -234,6 +244,7 @@ public class FormTestings extends JelenaView<Testing> {
     private javax.swing.JSpinner jsNumberOfTesting;
     private javax.swing.JLabel lblDateOfTesting;
     private javax.swing.JLabel lblNumberOfTesting;
+    private javax.swing.JLabel lblPercent;
     private javax.swing.JLabel lblResultOfTesting;
     private javax.swing.JLabel lblTypeOfTesting;
     private javax.swing.JTextField txtTypeOfTesting;

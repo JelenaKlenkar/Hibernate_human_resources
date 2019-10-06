@@ -80,6 +80,7 @@ public class FormInterviews extends JelenaView<Interview> {
         lblDateOfInterview.setText("Date of interview:");
 
         dcDateOfInterview.setDateFormatString("dd.MM.yyyy.");
+        dcDateOfInterview.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
         lblNumberOfInterview.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblNumberOfInterview.setText("NumberOfInterview:");
