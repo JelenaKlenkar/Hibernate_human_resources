@@ -6,10 +6,20 @@
 package human_resources.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
+import com.github.lgooddatepicker.components.TimePickerSettings;
+import human_resources.controller.ProcessingApplicant;
 import human_resources.controller.ProcessingJobApplication;
+import human_resources.controller.ProcessingJobPosition;
+import human_resources.model.Applicant;
 import human_resources.model.JobApplication;
+import human_resources.model.JobPosition;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -28,11 +38,19 @@ public class FormJobApplications extends JelenaView<JobApplication> {
         initComponents();
         ProcessingJobApplication processing = new ProcessingJobApplication();
         setTitle(Utility.getNameOfApplication() + " Job applications");
+        btnSearch.setText("\uD83D\uDD0D");
         DatePickerSettings dps = new DatePickerSettings();
         dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
 
         dpDateOfReceive.setSettings(dps);
+        TimePickerSettings tps = new TimePickerSettings();
+        tps.setFormatForDisplayTime("HH:mm:ss");
+       
+        loadApplicants();
+        loadJobPositions();
+        
     }
+
     protected void load() {
         DefaultListModel<JobApplication> model = new DefaultListModel<>();
         processing.getEntitys().forEach(
@@ -59,11 +77,17 @@ public class FormJobApplications extends JelenaView<JobApplication> {
         tpTimeOfReceive = new com.github.lgooddatepicker.components.TimePicker();
         lblNumberOfApplication = new javax.swing.JLabel();
         txtNumberOfApplication = new javax.swing.JTextField();
+        cmbApplicants = new javax.swing.JComboBox<>();
+        lblApplicant = new javax.swing.JLabel();
+        lblJobPosition = new javax.swing.JLabel();
+        cmbJobPositions = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         List = new javax.swing.JList<>();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        txtCondition = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,6 +104,12 @@ public class FormJobApplications extends JelenaView<JobApplication> {
 
         txtNumberOfApplication.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
+        lblApplicant.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        lblApplicant.setText("Applicant:");
+
+        lblJobPosition.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        lblJobPosition.setText("Job position:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -88,35 +118,47 @@ public class FormJobApplications extends JelenaView<JobApplication> {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblNumberOfApplication)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNumberOfApplication, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblTimeOfReceive, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                            .addComponent(lblDateOfReceive, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dpDateOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tpTimeOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(lblNumberOfApplication)
+                            .addComponent(lblTimeOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDateOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblApplicant))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tpTimeOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumberOfApplication, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dpDateOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(cmbApplicants, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblJobPosition)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cmbJobPositions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDateOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dpDateOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(cmbApplicants, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblApplicant))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTimeOfReceive)
-                    .addComponent(tpTimeOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblJobPosition)
+                    .addComponent(cmbJobPositions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDateOfReceive, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpDateOfReceive, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTimeOfReceive, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tpTimeOfReceive, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumberOfApplication)
                     .addComponent(txtNumberOfApplication, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         jScrollPane1.setViewportView(List);
@@ -129,11 +171,18 @@ public class FormJobApplications extends JelenaView<JobApplication> {
             }
         });
 
-        btnUpdate.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnUpdate.setText("Update");
+        btnUpdate.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
-        btnDelete.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+
+        btnSearch.setText("S");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,30 +194,40 @@ public class FormJobApplications extends JelenaView<JobApplication> {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(29, 29, 29)
                         .addComponent(btnAdd)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnUpdate)
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
                         .addComponent(btnDelete)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdd)
-                            .addComponent(btnUpdate)
-                            .addComponent(btnDelete)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnAdd)
+                    .addComponent(btnDelete))
+                .addGap(32, 32, 32))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -176,24 +235,51 @@ public class FormJobApplications extends JelenaView<JobApplication> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-       JobApplication ja=new JobApplication();
-       
-       save(ja);
+        JobApplication ja = new JobApplication();
+
+        if (dpDateOfReceive.getDate() != null) {
+            Date d = Utility.convertToDateViaInstant(dpDateOfReceive.getDate());
+
+            ja.setDateOfReceive(d);
+        }
+        if (tpTimeOfReceive.getTime() != null) {
+            Time t = Utility.convertToTimeViaInstant(tpTimeOfReceive.getTime());
+
+            ja.setTimeOfReceive(t);
+        }
+
+        ja.setNumberOfApplication(ja.getNumberOfApplication());
+
+        save(ja);
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        if (txtCondition.getText().trim().length() < 2) {
+            JOptionPane.showMessageDialog(null, "Minimum 2 characters");
+            return;
+        }
+        load();
+    }//GEN-LAST:event_btnSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<JobApplication> List;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<Applicant> cmbApplicants;
+    private javax.swing.JComboBox<JobPosition> cmbJobPositions;
     private com.github.lgooddatepicker.components.DatePicker dpDateOfReceive;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblApplicant;
     private javax.swing.JLabel lblDateOfReceive;
+    private javax.swing.JLabel lblJobPosition;
     private javax.swing.JLabel lblNumberOfApplication;
     private javax.swing.JLabel lblTimeOfReceive;
     private com.github.lgooddatepicker.components.TimePicker tpTimeOfReceive;
+    private javax.swing.JTextField txtCondition;
     private javax.swing.JTextField txtNumberOfApplication;
     // End of variables declaration//GEN-END:variables
 
@@ -203,6 +289,9 @@ public class FormJobApplications extends JelenaView<JobApplication> {
             return;
 
         }
+        ja.setDateOfReceive(Utility.convertToDateViaInstant(dpDateOfReceive.getDate()));
+        ja.setTimeOfReceive(Utility.convertToTimeViaInstant(tpTimeOfReceive.getTime()));
+        ja.setNumberOfApplication(ja.getNumberOfApplication());
         try {
             processing.save(ja);
         } catch (JelenaException ex) {
@@ -215,25 +304,72 @@ public class FormJobApplications extends JelenaView<JobApplication> {
 
     @Override
     protected boolean control(JobApplication ja) {
-        return controlDateOfReceive(ja) &&
-                controlTimeOfReceive(ja) &&
-                controlNumberOfApplication(ja);
+        return controlDateOfReceive(ja)
+                && controlTimeOfReceive(ja)
+                && controlNumberOfApplication(ja);
     }
 
     @Override
-    protected void setValues(JobApplication entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected void setValues(JobApplication ja) {
+        dpDateOfReceive.setDate(Utility.convertToLocalDateViaInstant(ja.getDateOfReceive()));
+        tpTimeOfReceive.setTime(Utility.convertToLocalTimeViaInstant(ja.getTimeOfReceive()));
     }
 
     private boolean controlDateOfReceive(JobApplication ja) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (dpDateOfReceive.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Selection of date of receive is mandatory");
+            return false;
+        }
+        ja.setDateOfReceive(Utility.convertToDateViaInstant(dpDateOfReceive.getDate()));
+        return true;
     }
 
     private boolean controlTimeOfReceive(JobApplication ja) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (tpTimeOfReceive.getTime() == null) {
+            JOptionPane.showMessageDialog(null, "Selection of time of receive is mandatory");
+            return false;
+        }
+        ja.setTimeOfReceive(ja.getTimeOfReceive());
+        return true;
     }
 
     private boolean controlNumberOfApplication(JobApplication ja) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (txtNumberOfApplication.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Number of application is mandatory");
+            return false;
+        }
+        ja.setNumberOfApplication(ja.getNumberOfApplication());
+        return true;
+    }
+    
+     private void loadApplicants() {
+
+        DefaultComboBoxModel<Applicant> m = new DefaultComboBoxModel<>();
+        Applicant a= new Applicant();
+         a.setId(0);
+        a.setFirstName("Choose");
+        a.setLastName("Applicant");
+        m.addElement(a);
+
+        new ProcessingApplicant().getEntitys().forEach((applicant) -> {
+            m.addElement(applicant);
+        });
+        cmbApplicants.setModel(m);
+
+    }
+      private void loadJobPositions() {
+
+        DefaultComboBoxModel<JobPosition> m = new DefaultComboBoxModel<>();
+        JobPosition jp= new JobPosition();
+         jp.setId(0);
+        jp.setNameOfJobPosition("Choose job position");
+       
+        m.addElement(jp);
+
+        new ProcessingJobPosition().getEntitys().forEach((jobPosition) -> {
+            m.addElement(jobPosition);
+        });
+        cmbJobPositions.setModel(m);
+
     }
 }

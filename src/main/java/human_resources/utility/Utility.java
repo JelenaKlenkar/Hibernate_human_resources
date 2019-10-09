@@ -8,8 +8,10 @@ package human_resources.utility;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 import javax.xml.xpath.XPath;
@@ -89,5 +91,25 @@ public class Utility {
                 .atZone(ZoneId.systemDefault())
                 .toInstant());
     }
+
+    public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+    
+    public static LocalTime convertToLocalTimeViaInstant(Time timeToConvert) {
+        return timeToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalTime();
+    }
+    public static Time convertToTimeViaInstant(LocalTime timeToConvert) {
+        LocalTime now = LocalTime.now();
+        Time time = Time.valueOf( now );
+        return time;
+    }
+
+
+
 
 }

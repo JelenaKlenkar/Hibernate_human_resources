@@ -18,6 +18,9 @@ public class ProcessingJobApplication extends Processing<JobApplication> {
     public List<JobApplication> getEntitys() {
         return session.createQuery("from JobApplication").list();
     }
+    public List<JobApplication> getEntitys(String condition) {
+        return session.createQuery("from JobApplication ja where ja.numberOfApplication like :condition or ja.dateOfReceive like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+    }
 
     @Override
     protected void controlSave(JobApplication entity) throws JelenaException {

@@ -11,6 +11,7 @@ import human_resources.model.JobOffer;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultListModel;
@@ -199,10 +200,16 @@ public class FormJobOffers extends JelenaView<JobOffer> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Date d = dcStartingDate.getDate();
-        System.out.println(d);
-
         JobOffer jo = new JobOffer();
+        jo.setSalary(new BigDecimal(txtSalary.getText()));
+
+        if (dcStartingDate.getDate() != null) {
+
+            Date d = dcStartingDate.getDate();
+            jo.setStartingDate(d);
+            
+           
+        }
 
         save(jo);
     }//GEN-LAST:event_btnAddActionPerformed
@@ -218,7 +225,7 @@ public class FormJobOffers extends JelenaView<JobOffer> {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         JobOffer jo = List.getSelectedValue();
-        if (jo== null) {
+        if (jo == null) {
             JOptionPane.showMessageDialog(null, "First choose item");
             return;
         }
@@ -245,8 +252,8 @@ public class FormJobOffers extends JelenaView<JobOffer> {
         if (evt.getValueIsAdjusting()) {
             return;
         }
-      JobOffer jo = List.getSelectedValue();
-        if (jo== null) {
+        JobOffer jo = List.getSelectedValue();
+        if (jo == null) {
             return;
         }
         setValues(jo);
@@ -295,7 +302,7 @@ public class FormJobOffers extends JelenaView<JobOffer> {
     protected void setValues(JobOffer jo) {
         txtSalary.setText(jo.getSalary() == null ? ""
                 : jo.getSalary().toString());
-        //dcStartingDate.set;
+        dcStartingDate.setDate(jo.getStartingDate());
         chbAccept.setSelected(jo.isAccept());
         chbNotAccept.setSelected(!jo.isAccept());
     }
@@ -308,8 +315,6 @@ public class FormJobOffers extends JelenaView<JobOffer> {
                 JOptionPane.showMessageDialog(null, "Salary needs to be number");
                 return false;
             }
-        } else {
-            jo.setSalary(BigDecimal.ZERO);
         }
         if (txtSalary.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Salary is mandatory");
@@ -320,10 +325,11 @@ public class FormJobOffers extends JelenaView<JobOffer> {
     }
 
     private boolean controlStartingDate(JobOffer jo) {
-        //if(!dcStartingDate.isEnabled()){
-        //JOptionPane.showMessageDialog(null, "You need to select starting date");
-        // return false;
-        // }
+        if (dcStartingDate.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Selection of starting date is mandatory");
+            return false;
+        }
+        jo.setStartingDate(jo.getStartingDate());
         return true;
     }
 

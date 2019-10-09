@@ -6,6 +6,7 @@
 package human_resources.model;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import javax.persistence.ManyToOne;
 public class JobApplication extends human_resources.model.Entity implements Serializable {
 
     private Date dateOfReceive;
-    private Date timeOfReceive;
+    private Time timeOfReceive;
     private Integer numberOfApplication;
 
     @ManyToOne
@@ -32,7 +33,7 @@ public class JobApplication extends human_resources.model.Entity implements Seri
         super();
     }
 
-    public JobApplication(Integer id, Date dateOfReceive, Date timeOfReceive, Integer numberOfApplication, Applicant applicant, JobPosition jobposition) {
+    public JobApplication(Integer id, Date dateOfReceive, Time timeOfReceive, Integer numberOfApplication, Applicant applicant, JobPosition jobposition) {
         super(id);
         this.dateOfReceive = dateOfReceive;
         this.timeOfReceive = timeOfReceive;
@@ -49,11 +50,11 @@ public class JobApplication extends human_resources.model.Entity implements Seri
         this.dateOfReceive = dateOfReceive;
     }
 
-    public Date getTimeOfReceive() {
+    public Time getTimeOfReceive() {
         return timeOfReceive;
     }
 
-    public void setTimeOfReceive(Date timeOfReceive) {
+    public void setTimeOfReceive(Time timeOfReceive) {
         this.timeOfReceive = timeOfReceive;
     }
 
