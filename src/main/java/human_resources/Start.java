@@ -6,6 +6,7 @@
 package human_resources;
 
 import human_resources.test.InitialInsert;
+import human_resources.test.TestJobApplication;
 import human_resources.test.TestOperator;
 import human_resources.utility.HibernateUtil;
 import human_resources.view.Authorisation;
@@ -24,7 +25,7 @@ public class Start {
         //test.test();
         
         //InitialInsert.run();
-       
+       //TestJobApplication.test();
     }
     
 }

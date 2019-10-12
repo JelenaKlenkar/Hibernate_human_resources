@@ -98,18 +98,13 @@ public class Utility {
                 .toLocalDate();
     }
     
-    public static LocalTime convertToLocalTimeViaInstant(Time timeToConvert) {
-        return timeToConvert.toInstant()
+    public static LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
-                .toLocalTime();
+                .toLocalDateTime();
     }
-    public static Time convertToTimeViaInstant(LocalTime timeToConvert) {
-        LocalTime now = LocalTime.now();
-        Time time = Time.valueOf( now );
-        return time;
+     public static Date convertToDateViaSqlTimestamp(LocalDateTime dateToConvert) {
+        return java.sql.Timestamp.valueOf(dateToConvert);
     }
-
-
-
 
 }

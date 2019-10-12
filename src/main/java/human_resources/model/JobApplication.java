@@ -6,11 +6,10 @@
 package human_resources.model;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+
 
 /**
  *
@@ -19,8 +18,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class JobApplication extends human_resources.model.Entity implements Serializable {
 
-    private Date dateOfReceive;
-    private Time timeOfReceive;
+    private Date dateAndTimeOfReceive;
     private Integer numberOfApplication;
 
     @ManyToOne
@@ -33,29 +31,20 @@ public class JobApplication extends human_resources.model.Entity implements Seri
         super();
     }
 
-    public JobApplication(Integer id, Date dateOfReceive, Time timeOfReceive, Integer numberOfApplication, Applicant applicant, JobPosition jobposition) {
+    public JobApplication(Integer id, Date dateAndTimeOfReceive, Integer numberOfApplication, Applicant applicant, JobPosition jobposition) {
         super(id);
-        this.dateOfReceive = dateOfReceive;
-        this.timeOfReceive = timeOfReceive;
+        this.dateAndTimeOfReceive = dateAndTimeOfReceive;
         this.numberOfApplication = numberOfApplication;
         this.applicant = applicant;
         this.jobposition = jobposition;
     }
 
-    public Date getDateOfReceive() {
-        return dateOfReceive;
+    public Date getDateAndTimeOfReceive() {
+        return dateAndTimeOfReceive;
     }
 
-    public void setDateOfReceive(Date dateOfReceive) {
-        this.dateOfReceive = dateOfReceive;
-    }
-
-    public Time getTimeOfReceive() {
-        return timeOfReceive;
-    }
-
-    public void setTimeOfReceive(Time timeOfReceive) {
-        this.timeOfReceive = timeOfReceive;
+    public void setDateAndTimeOfReceive(Date dateAndTimeOfReceive) {
+        this.dateAndTimeOfReceive = dateAndTimeOfReceive;
     }
 
     public Integer getNumberOfApplication() {
@@ -80,6 +69,13 @@ public class JobApplication extends human_resources.model.Entity implements Seri
 
     public void setJobposition(JobPosition jobposition) {
         this.jobposition = jobposition;
-    }
+    }     
 
+   /* @Override
+    public String toString() {
+        return numberOfApplication.toString();
+    }*/
+
+    
+    
 }

@@ -18,37 +18,29 @@ public class ProcessingJobApplication extends Processing<JobApplication> {
     public List<JobApplication> getEntitys() {
         return session.createQuery("from JobApplication").list();
     }
+
     public List<JobApplication> getEntitys(String condition) {
-        return session.createQuery("from JobApplication ja where ja.numberOfApplication like :condition or ja.dateOfReceive like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+        return session.createQuery("from JobApplication ja where ja.jobApplication like :condition or ja.dateAndTimeOfReceive like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
     }
 
     @Override
     protected void controlSave(JobApplication entity) throws JelenaException {
-        controlDateOfReceive(entity);
-        controlTimeOfReceive(entity);
+        controlDateAndTimeOfReceive(entity);
         controlNumberOfApplication(entity);
     }
 
     @Override
     protected void controlDelete(JobApplication entity) throws JelenaException {
-
-    }
-
-    private void controlDateOfReceive(JobApplication entity) throws JelenaException {
-        if (entity.getDateOfReceive() == null || entity.getDateOfReceive().toString().length() == 0) {
-            throw new JelenaException("Date of receive needs to be entered");
-        }
-    }
-
-    private void controlTimeOfReceive(JobApplication entity) throws JelenaException {
-        if (entity.getTimeOfReceive() == null || entity.getTimeOfReceive().toString().length() == 0) {
-            throw new JelenaException("Time of receive needs to be entered");
-        }
+     
     }
 
     private void controlNumberOfApplication(JobApplication entity) throws JelenaException {
         if (entity.getNumberOfApplication() == null || entity.getNumberOfApplication().toString().length() == 0) {
             throw new JelenaException("Number of application needs to be entered");
         }
+    }
+
+    private void controlDateAndTimeOfReceive(JobApplication entity) throws JelenaException {
+        
     }
 }

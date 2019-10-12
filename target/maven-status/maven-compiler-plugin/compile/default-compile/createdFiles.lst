@@ -1,5 +1,6 @@
 human_resources\utility\HibernateUtil.class
 human_resources\view\Menu$7.class
+human_resources\view\FormJobApplications$2.class
 human_resources\model\Applicant.class
 human_resources\model\JobApplication.class
 human_resources\view\JelenaView.class
@@ -47,6 +48,7 @@ human_resources\view\FormJobPositions$4.class
 human_resources\test\InitialInsert.class
 human_resources\view\Menu$Time.class
 human_resources\controller\ProcessingJobPosition.class
+human_resources\test\TestJobApplication.class
 human_resources\view\SplashScreen$Loading.class
 human_resources\Start.class
 human_resources\view\FormTestings$1.class

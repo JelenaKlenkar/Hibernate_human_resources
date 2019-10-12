@@ -69,4 +69,11 @@ public class Interview extends human_resources.model.Entity implements Serializa
         this.jobApplications = jobApplications;
     }
 
+    @Override
+    public String toString() {
+        return dateOfInterview.toString();
+    }
+    
+    
+
 }

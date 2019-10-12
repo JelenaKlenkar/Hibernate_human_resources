@@ -7,6 +7,7 @@ package human_resources.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import human_resources.controller.ProcessingTesting;
+import human_resources.model.JobApplication;
 import human_resources.model.Testing;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
@@ -64,8 +65,10 @@ public class FormTestings extends JelenaView<Testing> {
         jsNumberOfTesting = new javax.swing.JSpinner();
         dpDateOfTesting = new com.github.lgooddatepicker.components.DatePicker();
         txtTypeOfTesting = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         lblPercent = new javax.swing.JLabel();
+        txtResultOfTesting = new javax.swing.JTextField();
+        lblJobApplication = new javax.swing.JLabel();
+        cmbJobApplication = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         List = new javax.swing.JList<>();
         btnAdd = new javax.swing.JButton();
@@ -89,15 +92,20 @@ public class FormTestings extends JelenaView<Testing> {
         lblResultOfTesting.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         jsNumberOfTesting.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5, 1));
+        jsNumberOfTesting.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txtTypeOfTesting.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTypeOfTesting.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
-        jComboBox1.setMaximumRowCount(100);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", " " }));
-
-        lblPercent.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblPercent.setText("%");
         lblPercent.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblPercent.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+
+        txtResultOfTesting.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtResultOfTesting.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+        lblJobApplication.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        lblJobApplication.setText("Job application: ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,47 +116,61 @@ public class FormTestings extends JelenaView<Testing> {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDateOfTesting)
-                            .addComponent(lblTypeOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTypeOfTesting)
-                            .addComponent(dpDateOfTesting, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNumberOfTesting))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(156, 156, 156)
+                                            .addComponent(txtResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblNumberOfTesting)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(8, 8, 8)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(lblTypeOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTypeOfTesting)))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblDateOfTesting)
+                        .addGap(26, 26, 26)
+                        .addComponent(dpDateOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(52, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblJobApplication)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbJobApplication, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTypeOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTypeOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblJobApplication)
+                    .addComponent(cmbJobApplication, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblTypeOfTesting, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(txtTypeOfTesting))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDateOfTesting)
-                    .addComponent(dpDateOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(dpDateOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPercent))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         List.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -189,33 +211,36 @@ public class FormTestings extends JelenaView<Testing> {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(btnAdd)
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd)
                             .addComponent(btnUpdate)
                             .addComponent(btnDelete)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,10 +248,15 @@ public class FormTestings extends JelenaView<Testing> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Date d = Utility.convertToDateViaInstant(dpDateOfTesting.getDate());
+        Testing t = new Testing();
 
-        System.out.println(d);
+        if (dpDateOfTesting.getDate() != null) {
 
+            Date d = Utility.convertToDateViaInstant(dpDateOfTesting.getDate());
+            t.setDateOfTesting(d);
+
+        }
+        save(t);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void ListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListValueChanged
@@ -281,16 +311,18 @@ public class FormTestings extends JelenaView<Testing> {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<JobApplication> cmbJobApplication;
     private com.github.lgooddatepicker.components.DatePicker dpDateOfTesting;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jsNumberOfTesting;
     private javax.swing.JLabel lblDateOfTesting;
+    private javax.swing.JLabel lblJobApplication;
     private javax.swing.JLabel lblNumberOfTesting;
     private javax.swing.JLabel lblPercent;
     private javax.swing.JLabel lblResultOfTesting;
     private javax.swing.JLabel lblTypeOfTesting;
+    private javax.swing.JTextField txtResultOfTesting;
     private javax.swing.JTextField txtTypeOfTesting;
     // End of variables declaration//GEN-END:variables
 
@@ -326,26 +358,38 @@ public class FormTestings extends JelenaView<Testing> {
     }
 
     private boolean controlDateOfTesting(Testing t) {
-        if (dpDateOfTesting.getText().trim().length() == 0) {
+        if (dpDateOfTesting.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Date of testing is mandatory");
             return false;
         }
-
+        t.setDateOfTesting(Utility.convertToDateViaInstant(dpDateOfTesting.getDate()));
         return true;
     }
 
     private boolean controlNumberOfTesting(Testing t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*if (jsNumberOfTesting.getValue() == null) {
+            JOptionPane.showMessageDialog(null, "You need to select number of testing");
+            return false;
+        }*/
+        t.setNumberOfTesting((Integer)jsNumberOfTesting.getValue());
+        return true;
     }
 
     private boolean controlResultOfTesting(Testing t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (txtResultOfTesting.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Result of testing is mandatory");
+            return false;
+        }
+        t.setResultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
+        return true;
     }
 
     @Override
     protected void setValues(Testing t) {
         txtTypeOfTesting.setText(t.getTypeOfTesting());
-      
+        t.setDateOfTesting(Utility.convertToDateViaInstant(dpDateOfTesting.getDate()));
+        t.setNumberOfTesting((Integer) jsNumberOfTesting.getValue());
+        t.setResultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
 
     }
 }
