@@ -10,7 +10,6 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-
 /**
  *
  * @author Jelena
@@ -69,13 +68,11 @@ public class JobApplication extends human_resources.model.Entity implements Seri
 
     public void setJobposition(JobPosition jobposition) {
         this.jobposition = jobposition;
-    }     
+    }
 
-   /* @Override
+    @Override
     public String toString() {
-        return numberOfApplication.toString();
-    }*/
+        return "" + numberOfApplication;
+    }
 
-    
-    
 }

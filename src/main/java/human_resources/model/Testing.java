@@ -20,7 +20,7 @@ public class Testing extends human_resources.model.Entity implements Serializabl
     private String typeOfTesting;
     private Date dateOfTesting;
     private Integer numberOfTesting;
-    private Integer ResultOfTesting;
+    private Integer resultOfTesting;
 
     @ManyToOne
     private JobApplication jobApplications;
@@ -29,12 +29,12 @@ public class Testing extends human_resources.model.Entity implements Serializabl
         super();
     }
 
-    public Testing(Integer id, String typeOfTesting, Date dateOfTesting, Integer numberOfTesting, Integer ResultOfTesting, JobApplication jobApplications) {
+    public Testing(Integer id, String typeOfTesting, Date dateOfTesting, Integer numberOfTesting, Integer resultOfTesting, JobApplication jobApplications) {
         super(id);
         this.typeOfTesting = typeOfTesting;
         this.dateOfTesting = dateOfTesting;
         this.numberOfTesting = numberOfTesting;
-        this.ResultOfTesting = ResultOfTesting;
+        this.resultOfTesting = resultOfTesting;
         this.jobApplications = jobApplications;
     }
 
@@ -62,12 +62,12 @@ public class Testing extends human_resources.model.Entity implements Serializabl
         this.numberOfTesting = numberOfTesting;
     }
 
-    public Integer getResultOfTesting() {
-        return ResultOfTesting;
+    public Integer getresultOfTesting() {
+        return resultOfTesting;
     }
 
-    public void setResultOfTesting(Integer ResultOfTesting) {
-        this.ResultOfTesting = ResultOfTesting;
+    public void setresultOfTesting(Integer resultOfTesting) {
+        this.resultOfTesting = resultOfTesting;
     }
 
     public JobApplication getJobApplications() {
@@ -76,6 +76,11 @@ public class Testing extends human_resources.model.Entity implements Serializabl
 
     public void setJobApplications(JobApplication jobApplications) {
         this.jobApplications = jobApplications;
+    }
+
+    @Override
+    public String toString() {
+        return numberOfTesting + "." + typeOfTesting;
     }
 
 }

@@ -6,6 +6,7 @@
 package human_resources.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
+import human_resources.controller.ProcessingJobApplication;
 import human_resources.controller.ProcessingTesting;
 import human_resources.model.JobApplication;
 import human_resources.model.Testing;
@@ -14,6 +15,7 @@ import human_resources.utility.Utility;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -32,10 +34,12 @@ public class FormTestings extends JelenaView<Testing> {
         initComponents();
         processing = new ProcessingTesting();
         setTitle(Utility.getNameOfApplication() + " Testings");
-
+        btnSearch.setText("\uD83D\uDD0D");
         DatePickerSettings dps = new DatePickerSettings();
         dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
         dpDateOfTesting.setSettings(dps);
+        loadJobApplications();
+        load();
     }
 
     protected void load() {
@@ -74,6 +78,8 @@ public class FormTestings extends JelenaView<Testing> {
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        txtCondition = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -94,6 +100,8 @@ public class FormTestings extends JelenaView<Testing> {
         jsNumberOfTesting.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5, 1));
         jsNumberOfTesting.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        dpDateOfTesting.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         txtTypeOfTesting.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTypeOfTesting.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
@@ -104,8 +112,8 @@ public class FormTestings extends JelenaView<Testing> {
         txtResultOfTesting.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtResultOfTesting.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
-        lblJobApplication.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblJobApplication.setText("Job application: ");
+        lblJobApplication.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,36 +123,37 @@ public class FormTestings extends JelenaView<Testing> {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(156, 156, 156)
-                                            .addComponent(txtResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(lblNumberOfTesting)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(8, 8, 8)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblTypeOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTypeOfTesting)))
-                        .addGap(27, 27, 27))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblDateOfTesting)
-                        .addGap(26, 26, 26)
-                        .addComponent(dpDateOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(52, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblJobApplication)
                         .addGap(18, 18, 18)
                         .addComponent(cmbJobApplication, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(156, 156, 156)
+                                                .addComponent(txtResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblNumberOfTesting)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblTypeOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTypeOfTesting))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblDateOfTesting)
+                                .addGap(26, 26, 26)
+                                .addComponent(dpDateOfTesting, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,6 +213,15 @@ public class FormTestings extends JelenaView<Testing> {
             }
         });
 
+        txtCondition.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+
+        btnSearch.setText("S");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,9 +239,14 @@ public class FormTestings extends JelenaView<Testing> {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                        .addGap(10, 10, 10)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(71, 71, 71))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +261,13 @@ public class FormTestings extends JelenaView<Testing> {
                             .addComponent(btnUpdate)
                             .addComponent(btnDelete)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -305,11 +332,20 @@ public class FormTestings extends JelenaView<Testing> {
         load();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        if (txtCondition.getText().trim().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Minimum 1 characters");
+            return;
+        }
+        load();
+    }//GEN-LAST:event_btnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<Testing> List;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<JobApplication> cmbJobApplication;
     private com.github.lgooddatepicker.components.DatePicker dpDateOfTesting;
@@ -322,6 +358,7 @@ public class FormTestings extends JelenaView<Testing> {
     private javax.swing.JLabel lblPercent;
     private javax.swing.JLabel lblResultOfTesting;
     private javax.swing.JLabel lblTypeOfTesting;
+    private javax.swing.JTextField txtCondition;
     private javax.swing.JTextField txtResultOfTesting;
     private javax.swing.JTextField txtTypeOfTesting;
     // End of variables declaration//GEN-END:variables
@@ -371,7 +408,7 @@ public class FormTestings extends JelenaView<Testing> {
             JOptionPane.showMessageDialog(null, "You need to select number of testing");
             return false;
         }*/
-        t.setNumberOfTesting((Integer)jsNumberOfTesting.getValue());
+        t.setNumberOfTesting((Integer) jsNumberOfTesting.getValue());
         return true;
     }
 
@@ -380,7 +417,7 @@ public class FormTestings extends JelenaView<Testing> {
             JOptionPane.showMessageDialog(null, "Result of testing is mandatory");
             return false;
         }
-        t.setResultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
+        t.setresultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
         return true;
     }
 
@@ -389,7 +426,23 @@ public class FormTestings extends JelenaView<Testing> {
         txtTypeOfTesting.setText(t.getTypeOfTesting());
         t.setDateOfTesting(Utility.convertToDateViaInstant(dpDateOfTesting.getDate()));
         t.setNumberOfTesting((Integer) jsNumberOfTesting.getValue());
-        t.setResultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
+        t.setresultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
+
+    }
+    private void loadJobApplications(){
+       DefaultComboBoxModel<JobApplication> m = new DefaultComboBoxModel<>();
+        JobApplication ja = new JobApplication();
+        ja.setId(0);
+      ja.setNumberOfApplication(Integer.parseInt("0"));
+       
+      
+
+        m.addElement(ja);
+
+        new ProcessingJobApplication().getEntitys().forEach((jobApplication) -> {
+            m.addElement(jobApplication);
+        });
+        cmbJobApplication.setModel(m);
 
     }
 }

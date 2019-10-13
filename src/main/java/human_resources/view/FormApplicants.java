@@ -41,7 +41,7 @@ public class FormApplicants extends JelenaView<Applicant> {
         setTitle(Utility.getNameOfApplication() + " Applicants");
         processing = new ProcessingApplicant();
         btnSearch.setText("\uD83D\uDD0D");
-        //load();
+        load();
     }
 
     protected void load() {

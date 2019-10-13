@@ -20,7 +20,7 @@ public class ProcessingInterview extends Processing<Interview> {
         return session.createQuery("from Interview").list();
     }
     public List<Interview> getEntitys(String condition) {
-        return session.createQuery("from Interview i where i.jobApplication like :condition or i.dateOfInterview like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+        return session.createQuery("from Interview i where i.typeOfInterview like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
     }
     @Override
     protected void controlSave(Interview entity) throws JelenaException {

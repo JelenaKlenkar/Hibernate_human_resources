@@ -23,18 +23,18 @@ public class Interview extends human_resources.model.Entity implements Serializa
     private Integer numberOfInterview;
 
     @ManyToOne
-    private JobApplication jobApplications;
+    private JobApplication jobApplication;
 
     public Interview() {
         super();
     }
 
-    public Interview(Integer id, String typeOfInterview, Date dateOfInterview, Integer numberOfInterview, JobApplication jobApplications) {
+    public Interview(Integer id, String typeOfInterview, Date dateOfInterview, Integer numberOfInterview, JobApplication jobApplication) {
         super(id);
         this.typeOfInterview = typeOfInterview;
         this.dateOfInterview = dateOfInterview;
         this.numberOfInterview = numberOfInterview;
-        this.jobApplications = jobApplications;
+        this.jobApplication = jobApplication;
     }
 
     public String getTypeOfInterview() {
@@ -61,19 +61,17 @@ public class Interview extends human_resources.model.Entity implements Serializa
         this.numberOfInterview = numberOfInterview;
     }
 
-    public JobApplication getJobApplications() {
-        return jobApplications;
+    public JobApplication getJobApplication() {
+        return jobApplication;
     }
 
-    public void setJobApplications(JobApplication jobApplications) {
-        this.jobApplications = jobApplications;
+    public void setJobApplication(JobApplication jobApplication) {
+        this.jobApplication = jobApplication;
     }
 
     @Override
     public String toString() {
-        return dateOfInterview.toString();
+        return typeOfInterview;
     }
-    
-    
 
 }

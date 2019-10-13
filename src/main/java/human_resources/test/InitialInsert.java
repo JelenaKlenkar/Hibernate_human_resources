@@ -22,8 +22,11 @@ public class InitialInsert {
 
     public static void run() {
         Applicant a = new Applicant();
-
+        a.setFirstName("Marko");
+        a.setLastName("Marković");
         a.setAddress("Market Street,New York");
+        a.setEmail("aaa@gag.com");
+        a.setPersonalIdentificationNumber("36328471992");
         a.setPhoneNumber("0123455678");
         a.setApplicantCV("https://resume.io/?gclid=EAIaIQobChMI8OOlptP25AIVA-R3Ch1mzQKIEAAYAiAAEgKXMvD_BwE");
         a.setMotivationalLetter("http://ecs.ihu.edu.gr/co/employment-business-letters/example-motivation-letter");
@@ -63,7 +66,7 @@ public class InitialInsert {
             System.out.println(ex.getMessage());
 
         }
-        
+
         System.out.println("Finished");
     }
 

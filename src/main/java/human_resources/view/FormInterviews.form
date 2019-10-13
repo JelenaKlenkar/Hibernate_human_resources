@@ -6,9 +6,6 @@
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[750, 460]"/>
     </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[750, 460]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -53,7 +50,7 @@
                   </Group>
                   <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="177" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,7 +78,7 @@
                       <Component id="jScrollPane1" min="-2" pref="193" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="180" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,7 +119,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lblJobApplication" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="cmbJobApplication" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbJobApplications" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
@@ -135,7 +132,7 @@
                   <EmptySpace pref="34" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblJobApplication" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbJobApplication" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbJobApplications" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -192,6 +189,12 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Courier New" size="14" style="0"/>
             </Property>
+            <Property name="maxSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
+              <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,-26,112,122,112,81,-8,120"/>
+            </Property>
+            <Property name="minSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
+              <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,-1,-1,-57,124,-29,-120,17,-8,120"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNumberOfInterview">
@@ -217,7 +220,7 @@
             <Property name="text" type="java.lang.String" value="Job application: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbJobApplication">
+        <Component class="javax.swing.JComboBox" name="cmbJobApplications">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -289,7 +292,7 @@
     <Component class="javax.swing.JLabel" name="txtCondition">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Courier New" size="14" style="0"/>
+          <Font name="Courier New" size="12" style="0"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">

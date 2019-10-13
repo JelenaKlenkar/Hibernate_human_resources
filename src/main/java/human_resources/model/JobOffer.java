@@ -69,4 +69,12 @@ public class JobOffer extends human_resources.model.Entity implements Serializab
         this.jobApplications = jobApplications;
     }
 
+    @Override
+    public String toString() {
+        return "Salary: " + salary + "," + "Starting date: " + startingDate;
+    }
+    
+    
+            
+
 }

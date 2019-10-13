@@ -43,7 +43,7 @@ public class FormInterviews extends JelenaView<Interview> {
 
     protected void load() {
         DefaultListModel<Interview> model = new DefaultListModel<>();
-        processing.getEntitys().forEach(
+        processing.getEntitys(txtCondition.getText().trim()).forEach(
                 (interview) -> {
                     model.addElement(interview);
                 });
@@ -68,7 +68,7 @@ public class FormInterviews extends JelenaView<Interview> {
         lblNumberOfInterview = new javax.swing.JLabel();
         jsNumberOfInterview = new javax.swing.JSpinner();
         lblJobApplication = new javax.swing.JLabel();
-        cmbJobApplication = new javax.swing.JComboBox<>();
+        cmbJobApplications = new javax.swing.JComboBox<>();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -79,7 +79,6 @@ public class FormInterviews extends JelenaView<Interview> {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 460));
-        setPreferredSize(new java.awt.Dimension(750, 460));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier New", 2, 12))); // NOI18N
 
@@ -93,6 +92,8 @@ public class FormInterviews extends JelenaView<Interview> {
 
         dcDateOfInterview.setDateFormatString("dd.MM.yyyy.");
         dcDateOfInterview.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        dcDateOfInterview.setMaxSelectableDate(new java.util.Date(253370764907000L));
+        dcDateOfInterview.setMinSelectableDate(new java.util.Date(-62135769493000L));
 
         lblNumberOfInterview.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblNumberOfInterview.setText("NumberOfInterview:");
@@ -124,7 +125,7 @@ public class FormInterviews extends JelenaView<Interview> {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblJobApplication)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbJobApplication, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmbJobApplications, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,7 +134,7 @@ public class FormInterviews extends JelenaView<Interview> {
                 .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblJobApplication)
-                    .addComponent(cmbJobApplication, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbJobApplications, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTypeOfInterview)
@@ -175,7 +176,7 @@ public class FormInterviews extends JelenaView<Interview> {
         });
         jScrollPane1.setViewportView(List);
 
-        txtCondition.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        txtCondition.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         txtCondition.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnSearch.setText("S");
@@ -208,7 +209,7 @@ public class FormInterviews extends JelenaView<Interview> {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +230,7 @@ public class FormInterviews extends JelenaView<Interview> {
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -270,7 +271,7 @@ public class FormInterviews extends JelenaView<Interview> {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<JobApplication> cmbJobApplication;
+    private javax.swing.JComboBox<JobApplication> cmbJobApplications;
     private com.toedter.calendar.JDateChooser dcDateOfInterview;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -289,6 +290,8 @@ public class FormInterviews extends JelenaView<Interview> {
             return;
 
         }
+        i.setJobApplication((JobApplication)cmbJobApplications.getSelectedItem());
+        
         try {
             processing.save(i);
         } catch (JelenaException ex) {
@@ -309,7 +312,11 @@ public class FormInterviews extends JelenaView<Interview> {
 
     @Override
     protected void setValues(Interview i) {
+        cmbJobApplications.setSelectedItem(i.getJobApplication());
         txtTypeOfInterview.setText(i.getTypeOfInterview());
+        dcDateOfInterview.setDate(i.getDateOfInterview());
+        jsNumberOfInterview.setValue(i.getNumberOfInterview());
+        
         
     }
 
@@ -331,11 +338,12 @@ public class FormInterviews extends JelenaView<Interview> {
         return true;
     }
     private boolean controlNumberOfInterview(Interview i) {
-     if(jsNumberOfInterview.getValue()==null){
+    /* if(jsNumberOfInterview.getValue()==0){
          JOptionPane.showMessageDialog(null,"You need to select number of interview");
            return false; 
-        }
-     jsNumberOfInterview.getValue();
+        }*/
+      i.setNumberOfInterview((Integer) jsNumberOfInterview.getValue());
+        
      return true;
     }
     
@@ -343,7 +351,7 @@ public class FormInterviews extends JelenaView<Interview> {
        DefaultComboBoxModel<JobApplication> m = new DefaultComboBoxModel<>();
         JobApplication ja = new JobApplication();
         ja.setId(0);
-//        ja.setNumberOfApplication(Integer.parseInt("Choose job application"));
+      ja.setNumberOfApplication(Integer.parseInt("0"));
        
       
 
@@ -352,7 +360,7 @@ public class FormInterviews extends JelenaView<Interview> {
         new ProcessingJobApplication().getEntitys().forEach((jobApplication) -> {
             m.addElement(jobApplication);
         });
-        cmbJobApplication.setModel(m);
+        cmbJobApplications.setModel(m);
 
     }
     

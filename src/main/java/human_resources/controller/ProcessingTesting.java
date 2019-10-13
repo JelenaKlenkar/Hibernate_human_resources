@@ -18,7 +18,9 @@ public class ProcessingTesting extends Processing<Testing> {
     public List<Testing> getEntitys() {
         return session.createQuery("from Testing").list();
     }
-
+    public List<Testing> getEntitys(String condition) {
+        return session.createQuery("from Testing t where t.numberOfTesting like :condition or t.typeOfTesting like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+    }
     @Override
     protected void controlSave(Testing entity) throws JelenaException {
         controlTypeOfTesting(entity);
@@ -57,7 +59,7 @@ public class ProcessingTesting extends Processing<Testing> {
     }
 
     private void controlResultOfTesting(Testing entity) throws JelenaException {
-        if (entity.getResultOfTesting() == null || entity.getResultOfTesting().toString().length() == 0) {
+        if (entity.getresultOfTesting() == null || entity.getresultOfTesting().toString().length() == 0) {
             throw new JelenaException("Result of testing needs to be entered");
         }
     }

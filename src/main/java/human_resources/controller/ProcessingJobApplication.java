@@ -20,7 +20,7 @@ public class ProcessingJobApplication extends Processing<JobApplication> {
     }
 
     public List<JobApplication> getEntitys(String condition) {
-        return session.createQuery("from JobApplication ja where ja.jobApplication like :condition or ja.dateAndTimeOfReceive like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+        return session.createQuery("from JobApplication ja where ja.numberOfApplication like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
     }
 
     @Override

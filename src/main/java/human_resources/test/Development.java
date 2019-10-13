@@ -12,7 +12,7 @@ package human_resources.test;
 public class Development {
 
     public static void main(String[] args) {
-        InsertApplicant.run(10000);
+        InsertApplicant.run(500);
     }
     
 }

@@ -2,6 +2,7 @@ human_resources\utility\HibernateUtil.class
 human_resources\view\Menu$7.class
 human_resources\view\FormJobApplications$2.class
 human_resources\model\Applicant.class
+human_resources\view\FormInterviews$3.class
 human_resources\model\JobApplication.class
 human_resources\view\JelenaView.class
 human_resources\view\FormApplicants$3.class
@@ -19,6 +20,7 @@ human_resources\model\JobPosition.class
 human_resources\view\FormTestings$3.class
 human_resources\controller\ProcessingPerson.class
 human_resources\view\Menu$6.class
+human_resources\view\FormJobApplications$3.class
 human_resources\view\Menu$3.class
 human_resources\view\FormJobPositions.class
 human_resources\model\Interview.class
@@ -45,6 +47,7 @@ human_resources\view\Authorisation$1.class
 human_resources\view\FormJobOffers$4.class
 human_resources\view\FormApplicants$5.class
 human_resources\view\FormJobPositions$4.class
+human_resources\view\FormJobApplications$4.class
 human_resources\test\InitialInsert.class
 human_resources\view\Menu$Time.class
 human_resources\controller\ProcessingJobPosition.class
@@ -67,9 +70,11 @@ human_resources\view\FormJobOffers$3.class
 human_resources\controller\ProcessingJobOffer.class
 human_resources\view\FormTestings$2.class
 human_resources\model\Entity.class
+human_resources\view\FormJobPositions$5.class
 human_resources\controller\ProcessingOperator.class
 human_resources\test\TestApplicant.class
 human_resources\view\Menu$8.class
 human_resources\view\Authorisation.class
 human_resources\model\Testing.class
 human_resources\view\FormTestings.class
+human_resources\view\FormTestings$5.class

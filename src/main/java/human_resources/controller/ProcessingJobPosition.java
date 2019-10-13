@@ -18,7 +18,9 @@ public class ProcessingJobPosition extends Processing<JobPosition> {
     public List<JobPosition> getEntitys() {
         return session.createQuery("from JobPosition").list();
     }
-
+    public List<JobPosition> getEntitys(String condition) {
+        return session.createQuery("from JobPosition j where j.nameOfJobPosition like :condition ").setParameter("condition", condition + "%").setMaxResults(20).list();
+    }
     @Override
     protected void controlSave(JobPosition entity) throws JelenaException {
         controlNameOfJobPosition(entity);
