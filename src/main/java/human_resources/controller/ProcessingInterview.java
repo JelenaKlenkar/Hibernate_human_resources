@@ -31,7 +31,7 @@ public class ProcessingInterview extends Processing<Interview> {
 
     @Override
     protected void controlDelete(Interview entity) throws JelenaException {
-
+      super.delete(entity);
     }
 
     private void controlTypeOfInterview(Interview entity) throws JelenaException {
@@ -45,9 +45,8 @@ public class ProcessingInterview extends Processing<Interview> {
     }
 
     private void controlDateOfInterview(Interview entity) throws JelenaException {
-        if (entity.getDateOfInterview() == null || entity.getDateOfInterview().toString().length() == 0) {
-
-            throw new JelenaException("Date of interview needs to be entered");
+       if(entity.getDateOfInterview()==null){
+            return;
         }
     }
 

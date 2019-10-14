@@ -58,6 +58,7 @@ public class FormJobApplications extends JelenaView<JobApplication> {
     
     protected void load() {
         DefaultListModel<JobApplication> model = new DefaultListModel<>();
+      
         processing.getEntitys(txtCondition.getText().trim()).forEach(
                 (jobApplication) -> {
                     model.addElement(jobApplication);
@@ -94,7 +95,7 @@ public class FormJobApplications extends JelenaView<JobApplication> {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 460));
-        setPreferredSize(new java.awt.Dimension(750, 460));
+        setPreferredSize(new java.awt.Dimension(550, 360));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier New", 2, 14))); // NOI18N
 
@@ -148,15 +149,15 @@ public class FormJobApplications extends JelenaView<JobApplication> {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblJobPosition)
                     .addComponent(cmbJobPositions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(lblDateAndTimeOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dtpDateAndTimeOfReceive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumberOfApplication)
                     .addComponent(txtNumberOfApplication, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                .addGap(19, 19, 19))
         );
 
         List.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
@@ -218,7 +219,7 @@ public class FormJobApplications extends JelenaView<JobApplication> {
                         .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,6 +338,7 @@ public class FormJobApplications extends JelenaView<JobApplication> {
         ja.setApplicant((Applicant) cmbApplicants.getSelectedItem());
         ja.setJobposition((JobPosition) cmbJobPositions.getSelectedItem());
         ja.setNumberOfApplication(Integer.parseInt(txtNumberOfApplication.getText()));
+        
         try {
             processing.save(ja);
         } catch (JelenaException ex) {

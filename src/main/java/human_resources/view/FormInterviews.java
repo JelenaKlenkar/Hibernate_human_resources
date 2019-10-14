@@ -74,11 +74,11 @@ public class FormInterviews extends JelenaView<Interview> {
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         List = new javax.swing.JList<>();
-        txtCondition = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
+        txtCondition = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(750, 460));
+        setMinimumSize(new java.awt.Dimension(550, 350));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier New", 2, 12))); // NOI18N
 
@@ -163,9 +163,19 @@ public class FormInterviews extends JelenaView<Interview> {
 
         btnUpdate.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         List.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         List.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
@@ -175,9 +185,6 @@ public class FormInterviews extends JelenaView<Interview> {
             }
         });
         jScrollPane1.setViewportView(List);
-
-        txtCondition.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        txtCondition.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnSearch.setText("S");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -193,44 +200,44 @@ public class FormInterviews extends JelenaView<Interview> {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(btnAdd)
                         .addGap(26, 26, 26)
                         .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd)
                             .addComponent(btnUpdate)
                             .addComponent(btnDelete)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCondition))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,9 +245,13 @@ public class FormInterviews extends JelenaView<Interview> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Date d = dcDateOfInterview.getDate();
-        System.out.println(d);
         Interview i = new Interview();
+
+        if (dcDateOfInterview != null) {
+
+            Date d = dcDateOfInterview.getDate();
+            i.setDateOfInterview(d);
+        }
 
         save(i);
     }//GEN-LAST:event_btnAddActionPerformed
@@ -254,16 +265,50 @@ public class FormInterviews extends JelenaView<Interview> {
             return;
         }
         setValues(i);
-    
+
     }//GEN-LAST:event_ListValueChanged
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-       if (txtCondition.getText().trim().length() < 1) {
+        if (txtCondition.getText().trim().length() < 1) {
             JOptionPane.showMessageDialog(null, "Minimum 1 characters");
             return;
         }
         load();
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        Interview i = List.getSelectedValue();
+        if (i == null) {
+            JOptionPane.showMessageDialog(null, "First choose item");
+            return;
+        }
+        if (JOptionPane.showConfirmDialog(
+                null,
+                "Safe to delete" + " " + i.getTypeOfInterview(),
+                "Delete interview",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE)
+                == JOptionPane.NO_OPTION) {
+            return;
+        }
+        try {
+            processing.delete(i);
+        } catch (JelenaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return;
+        }
+
+        load();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+         Interview i = List.getSelectedValue();
+        if (i == null) {
+            JOptionPane.showMessageDialog(null, "First choose item");
+            return;
+        }
+        save(i);
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<Interview> List;
@@ -280,7 +325,7 @@ public class FormInterviews extends JelenaView<Interview> {
     private javax.swing.JLabel lblJobApplication;
     private javax.swing.JLabel lblNumberOfInterview;
     private javax.swing.JLabel lblTypeOfInterview;
-    private javax.swing.JLabel txtCondition;
+    private javax.swing.JTextField txtCondition;
     private javax.swing.JTextField txtTypeOfInterview;
     // End of variables declaration//GEN-END:variables
 
@@ -290,8 +335,8 @@ public class FormInterviews extends JelenaView<Interview> {
             return;
 
         }
-        i.setJobApplication((JobApplication)cmbJobApplications.getSelectedItem());
-        
+        i.setJobApplication((JobApplication) cmbJobApplications.getSelectedItem());
+
         try {
             processing.save(i);
         } catch (JelenaException ex) {
@@ -313,11 +358,10 @@ public class FormInterviews extends JelenaView<Interview> {
     @Override
     protected void setValues(Interview i) {
         cmbJobApplications.setSelectedItem(i.getJobApplication());
-        txtTypeOfInterview.setText(i.getTypeOfInterview());
+        txtTypeOfInterview.setText(i.getTypeOfInterview() == null ? "" : i.getTypeOfInterview());
         dcDateOfInterview.setDate(i.getDateOfInterview());
         jsNumberOfInterview.setValue(i.getNumberOfInterview());
-        
-        
+
     }
 
     private boolean controlTypeOfInterview(Interview i) {
@@ -333,27 +377,26 @@ public class FormInterviews extends JelenaView<Interview> {
         if (dcDateOfInterview.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Selection of date of interview is mandatory");
             return false;
-    }
+        }
         i.setDateOfInterview(dcDateOfInterview.getDate());
         return true;
     }
+
     private boolean controlNumberOfInterview(Interview i) {
-    /* if(jsNumberOfInterview.getValue()==0){
+        /* if(jsNumberOfInterview.getValue()==0){
          JOptionPane.showMessageDialog(null,"You need to select number of interview");
            return false; 
         }*/
-      i.setNumberOfInterview((Integer) jsNumberOfInterview.getValue());
-        
-     return true;
+        i.setNumberOfInterview((Integer) jsNumberOfInterview.getValue());
+
+        return true;
     }
-    
-    private void loadJobApplications(){
-       DefaultComboBoxModel<JobApplication> m = new DefaultComboBoxModel<>();
+
+    private void loadJobApplications() {
+        DefaultComboBoxModel<JobApplication> m = new DefaultComboBoxModel<>();
         JobApplication ja = new JobApplication();
         ja.setId(0);
-      ja.setNumberOfApplication(Integer.parseInt("0"));
-       
-      
+        ja.setNumberOfApplication(Integer.parseInt("0"));
 
         m.addElement(ja);
 
@@ -363,7 +406,5 @@ public class FormInterviews extends JelenaView<Interview> {
         cmbJobApplications.setModel(m);
 
     }
-    
-    }
 
-
+}

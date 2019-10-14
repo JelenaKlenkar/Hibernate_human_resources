@@ -44,7 +44,7 @@ public class FormTestings extends JelenaView<Testing> {
 
     protected void load() {
         DefaultListModel<Testing> model = new DefaultListModel<>();
-        processing.getEntitys().forEach(
+        processing.getEntitys(txtCondition.getText().trim()).forEach(
                 (testing) -> {
                     model.addElement(testing);
                 });
@@ -277,12 +277,13 @@ public class FormTestings extends JelenaView<Testing> {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Testing t = new Testing();
 
-        if (dpDateOfTesting.getDate() != null) {
+          if (dpDateOfTesting.getDate() != null) {
 
             Date d = Utility.convertToDateViaInstant(dpDateOfTesting.getDate());
             t.setDateOfTesting(d);
 
         }
+
         save(t);
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -367,6 +368,11 @@ public class FormTestings extends JelenaView<Testing> {
         if (!control(t)) {
             return;
         }
+        t.setJobApplications((JobApplication) cmbJobApplication.getSelectedItem());
+        t.setTypeOfTesting(txtTypeOfTesting.getText());
+        t.setNumberOfTesting((Integer) jsNumberOfTesting.getValue());
+        t.setresultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
+        t.setDateOfTesting(Utility.convertToDateViaInstant(dpDateOfTesting.getDate()));
         try {
             processing.save(t);
         } catch (JelenaException ex) {
@@ -404,7 +410,7 @@ public class FormTestings extends JelenaView<Testing> {
     }
 
     private boolean controlNumberOfTesting(Testing t) {
-        /*if (jsNumberOfTesting.getValue() == null) {
+        /*if (jsNumberOfTesting.getValue() == 0) {
             JOptionPane.showMessageDialog(null, "You need to select number of testing");
             return false;
         }*/
@@ -423,19 +429,19 @@ public class FormTestings extends JelenaView<Testing> {
 
     @Override
     protected void setValues(Testing t) {
+        cmbJobApplication.setSelectedItem(t.getJobApplications());
         txtTypeOfTesting.setText(t.getTypeOfTesting());
         t.setDateOfTesting(Utility.convertToDateViaInstant(dpDateOfTesting.getDate()));
         t.setNumberOfTesting((Integer) jsNumberOfTesting.getValue());
         t.setresultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
 
     }
-    private void loadJobApplications(){
-       DefaultComboBoxModel<JobApplication> m = new DefaultComboBoxModel<>();
+
+    private void loadJobApplications() {
+        DefaultComboBoxModel<JobApplication> m = new DefaultComboBoxModel<>();
         JobApplication ja = new JobApplication();
         ja.setId(0);
-      ja.setNumberOfApplication(Integer.parseInt("0"));
-       
-      
+        ja.setNumberOfApplication(Integer.parseInt("0"));
 
         m.addElement(ja);
 

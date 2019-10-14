@@ -18,9 +18,11 @@ public class ProcessingTesting extends Processing<Testing> {
     public List<Testing> getEntitys() {
         return session.createQuery("from Testing").list();
     }
+
     public List<Testing> getEntitys(String condition) {
-        return session.createQuery("from Testing t where t.numberOfTesting like :condition or t.typeOfTesting like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+        return session.createQuery("from Testing t where  t.typeOfTesting like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
     }
+
     @Override
     protected void controlSave(Testing entity) throws JelenaException {
         controlTypeOfTesting(entity);
@@ -31,7 +33,7 @@ public class ProcessingTesting extends Processing<Testing> {
 
     @Override
     protected void controlDelete(Testing entity) throws JelenaException {
-       super.delete(entity);
+        super.delete(entity);
     }
 
     private void controlTypeOfTesting(Testing entity) throws JelenaException {
@@ -40,14 +42,15 @@ public class ProcessingTesting extends Processing<Testing> {
             throw new JelenaException("Type of testing needs to be entered");
         }
         if (entity.getTypeOfTesting().length() > 100) {
-            throw new JelenaException("Type of testing cannot contain more then 100 letters");
+            throw new JelenaException("Type of testing cannot contain more then 100 characters");
         }
     }
 
     private void controlDateOfTesting(Testing entity) throws JelenaException {
-        if (entity.getDateOfTesting() == null || entity.getDateOfTesting().toString().length() == 0) {
-            throw new JelenaException("Number of interview needs to be entered");
+        if (entity.getDateOfTesting() == null) {
+            return;
         }
+
     }
 
     private void controlNumberOfTesting(Testing entity) throws JelenaException {

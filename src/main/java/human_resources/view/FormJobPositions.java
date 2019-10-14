@@ -33,7 +33,7 @@ public class FormJobPositions extends JelenaView<JobPosition> {
 
     protected void load() {
         DefaultListModel<JobPosition> model = new DefaultListModel<>();
-        processing.getEntitys((txtCondition.getText().trim())).forEach(
+        processing.getEntitys(txtCondition.getText().trim()).forEach(
                 (jobPosition) -> {
                     model.addElement(jobPosition);
                 });
@@ -204,8 +204,8 @@ public class FormJobPositions extends JelenaView<JobPosition> {
 
     protected void setValues(JobPosition jp) {
 
-        txtNameOfJobPosition.setText(jp.getNameOfJobPosition());
-        txtJobDescription.setText(jp.getJobDescription());
+        txtNameOfJobPosition.setText(jp.getNameOfJobPosition() == null ? "" : jp.getNameOfJobPosition());
+        txtJobDescription.setText(jp.getJobDescription() == null ? "" : jp.getJobDescription());
 
     }
 
@@ -255,7 +255,7 @@ public class FormJobPositions extends JelenaView<JobPosition> {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-         if (txtCondition.getText().trim().length() < 2) {
+        if (txtCondition.getText().trim().length() < 2) {
             JOptionPane.showMessageDialog(null, "Minimum 2 characters");
             return;
         }
@@ -283,6 +283,8 @@ public class FormJobPositions extends JelenaView<JobPosition> {
         if (!control(jp)) {
             return;
         }
+        jp.setNameOfJobPosition(txtNameOfJobPosition.getText());
+        jp.setJobDescription(txtJobDescription.getText());
         try {
             processing.save(jp);
         } catch (JelenaException ex) {
@@ -314,9 +316,9 @@ public class FormJobPositions extends JelenaView<JobPosition> {
         }
         jp.setJobDescription(txtJobDescription.getText());
         if (txtJobDescription.getText().length() > 500) {
-            JOptionPane.showMessageDialog(null,"Job description cannot contain more then 500 characters");
+            JOptionPane.showMessageDialog(null, "Job description cannot too long");
         }
-        
+
         return true;
     }
 }

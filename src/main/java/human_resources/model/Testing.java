@@ -80,7 +80,7 @@ public class Testing extends human_resources.model.Entity implements Serializabl
 
     @Override
     public String toString() {
-        return numberOfTesting + "." + typeOfTesting;
+        return typeOfTesting;
     }
 
 }
