@@ -12,6 +12,8 @@ import human_resources.model.JobApplication;
 import human_resources.model.Testing;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -37,7 +39,9 @@ public class FormTestings extends JelenaView<Testing> {
         btnSearch.setText("\uD83D\uDD0D");
         DatePickerSettings dps = new DatePickerSettings();
         dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
+
         dpDateOfTesting.setSettings(dps);
+        dpDateOfTesting.setDateToToday();
         loadJobApplications();
         load();
     }
@@ -122,37 +126,27 @@ public class FormTestings extends JelenaView<Testing> {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNumberOfTesting)
+                    .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDateOfTesting)
+                    .addComponent(lblTypeOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblJobApplication))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblJobApplication)
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbJobApplication, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbJobApplication, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTypeOfTesting)
+                            .addComponent(dpDateOfTesting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(156, 156, 156)
-                                                .addComponent(txtResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblNumberOfTesting)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(8, 8, 8)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblTypeOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTypeOfTesting))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblDateOfTesting)
-                                .addGap(26, 26, 26)
-                                .addComponent(dpDateOfTesting, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtResultOfTesting)
+                                    .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -170,10 +164,10 @@ public class FormTestings extends JelenaView<Testing> {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDateOfTesting)
                     .addComponent(dpDateOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jsNumberOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblNumberOfTesting, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(jsNumberOfTesting))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblResultOfTesting, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +229,7 @@ public class FormTestings extends JelenaView<Testing> {
                         .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -277,9 +271,9 @@ public class FormTestings extends JelenaView<Testing> {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Testing t = new Testing();
 
-          if (dpDateOfTesting.getDate() != null) {
-
+        if (dpDateOfTesting.getDate() != null) {
             Date d = Utility.convertToDateViaInstant(dpDateOfTesting.getDate());
+
             t.setDateOfTesting(d);
 
         }
@@ -415,6 +409,7 @@ public class FormTestings extends JelenaView<Testing> {
             return false;
         }*/
         t.setNumberOfTesting((Integer) jsNumberOfTesting.getValue());
+
         return true;
     }
 
@@ -423,6 +418,7 @@ public class FormTestings extends JelenaView<Testing> {
             JOptionPane.showMessageDialog(null, "Result of testing is mandatory");
             return false;
         }
+
         t.setresultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
         return true;
     }
@@ -430,10 +426,12 @@ public class FormTestings extends JelenaView<Testing> {
     @Override
     protected void setValues(Testing t) {
         cmbJobApplication.setSelectedItem(t.getJobApplications());
-        txtTypeOfTesting.setText(t.getTypeOfTesting());
-        t.setDateOfTesting(Utility.convertToDateViaInstant(dpDateOfTesting.getDate()));
-        t.setNumberOfTesting((Integer) jsNumberOfTesting.getValue());
-        t.setresultOfTesting(Integer.parseInt(txtResultOfTesting.getText()));
+        txtTypeOfTesting.setText(t.getTypeOfTesting() == null ? ""
+                : t.getTypeOfTesting());
+        dpDateOfTesting.setDate(Utility.convertToLocalDateViaInstant(t.getDateOfTesting()));
+        jsNumberOfTesting.setValue(t.getNumberOfTesting());
+        txtResultOfTesting.setText(t.getresultOfTesting() == null ? ""
+                : t.getresultOfTesting().toString());
 
     }
 
@@ -451,4 +449,5 @@ public class FormTestings extends JelenaView<Testing> {
         cmbJobApplication.setModel(m);
 
     }
+
 }

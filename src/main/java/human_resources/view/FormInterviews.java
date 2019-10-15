@@ -12,6 +12,8 @@ import human_resources.model.Interview;
 import human_resources.model.JobApplication;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
+import java.time.LocalDate;
+import static java.time.LocalDate.now;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
@@ -36,6 +38,8 @@ public class FormInterviews extends JelenaView<Interview> {
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setLocale(Locale.ENGLISH);
         dateChooser.setDateFormatString("dd.MM.yyyy");
+        LocalDate now = LocalDate.now();
+        dcDateOfInterview.setDate(Utility.convertToDateViaInstant(now));
         btnSearch.setText("\uD83D\uDD0D");
         loadJobApplications();
         load();

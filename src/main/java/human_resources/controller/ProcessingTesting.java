@@ -7,6 +7,8 @@ package human_resources.controller;
 
 import human_resources.model.Testing;
 import human_resources.utility.JelenaException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,7 +49,9 @@ public class ProcessingTesting extends Processing<Testing> {
     }
 
     private void controlDateOfTesting(Testing entity) throws JelenaException {
+
         if (entity.getDateOfTesting() == null) {
+
             return;
         }
 
@@ -64,6 +68,10 @@ public class ProcessingTesting extends Processing<Testing> {
     private void controlResultOfTesting(Testing entity) throws JelenaException {
         if (entity.getresultOfTesting() == null || entity.getresultOfTesting().toString().length() == 0) {
             throw new JelenaException("Result of testing needs to be entered");
+
+        }
+        if (entity.getresultOfTesting() > 100) {
+            throw new JelenaException("Result Of testing cannot be more then 100");
         }
     }
 

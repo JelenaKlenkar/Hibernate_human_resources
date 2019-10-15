@@ -14,11 +14,13 @@ import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import static java.time.LocalDate.now;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 
 /**
  *
@@ -38,6 +40,8 @@ public class FormJobOffers extends JelenaView<JobOffer> {
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.setLocale(Locale.ENGLISH);
         dateChooser.setDateFormatString("dd.MM.yyyy");
+        LocalDate now = LocalDate.now();
+        dcStartingDate.setDate(Utility.convertToDateViaInstant(now));
         btnSearch.setText("\uD83D\uDD0D");
 
         loadJobApplications();

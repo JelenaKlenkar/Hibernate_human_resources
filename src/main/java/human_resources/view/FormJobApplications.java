@@ -6,8 +6,10 @@
 package human_resources.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
+import com.github.lgooddatepicker.components.DateTimePicker;
 import com.github.lgooddatepicker.components.TimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
+import com.github.lgooddatepicker.components.TimePickerSettings.TimeIncrement;
 import com.github.lgooddatepicker.optionalusertools.PickerUtilities;
 import human_resources.controller.ProcessingApplicant;
 import human_resources.controller.ProcessingJobApplication;
@@ -37,28 +39,31 @@ public class FormJobApplications extends JelenaView<JobApplication> {
      * Creates new form FormJobApplication
      */
     private ProcessingJobApplication processing;
-    
+
     public FormJobApplications() {
         initComponents();
         processing = new ProcessingJobApplication();
         setTitle(Utility.getNameOfApplication() + " Job applications");
         btnSearch.setText("\uD83D\uDD0D");
         DatePickerSettings dtps = new DatePickerSettings(new Locale("hr", "HR"));
-        
+        TimePickerSettings timeSettings = new TimePickerSettings();
         dtps.setFormatForDatesCommonEra("dd.MM.yyyy.");
-        
+        timeSettings.use24HourClockFormat();
+
         dtpDateAndTimeOfReceive.datePicker.setSettings(dtps);
-        
+        dtpDateAndTimeOfReceive.datePicker.setDateToToday();
+        dtpDateAndTimeOfReceive.timePicker.setTimeToNow();
+
         loadApplicants();
         loadJobPositions();
-        
+
         load();
-        
+
     }
-    
+
     protected void load() {
         DefaultListModel<JobApplication> model = new DefaultListModel<>();
-      
+
         processing.getEntitys(txtCondition.getText().trim()).forEach(
                 (jobApplication) -> {
                     model.addElement(jobApplication);
@@ -161,6 +166,11 @@ public class FormJobApplications extends JelenaView<JobApplication> {
         );
 
         List.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        List.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(List);
 
         btnAdd.setText("Add");
@@ -249,21 +259,21 @@ public class FormJobApplications extends JelenaView<JobApplication> {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         JobApplication ja = new JobApplication();
-        
+
         if (dtpDateAndTimeOfReceive.getDateTimeStrict() != null) {
             Date d = Utility.convertToDateViaSqlTimestamp(dtpDateAndTimeOfReceive.getDateTimeStrict());
-            
+
             ja.setDateAndTimeOfReceive(d);
         }
-        
+
         try {
             ja.setNumberOfApplication(Integer.parseInt(txtNumberOfApplication.getText()));
         } catch (Exception ex) {
-            
+
             JOptionPane.showMessageDialog(null, "You need to enter number");
             return;
         }
-        
+
         save(ja);
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -296,7 +306,7 @@ public class FormJobApplications extends JelenaView<JobApplication> {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             return;
         }
-        
+
         load();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -308,6 +318,17 @@ public class FormJobApplications extends JelenaView<JobApplication> {
         }
         save(ja);
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void ListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListValueChanged
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+        JobApplication ja = List.getSelectedValue();
+        if (ja == null) {
+            return;
+        }
+        setValues(ja);
+    }//GEN-LAST:event_ListValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -333,37 +354,39 @@ public class FormJobApplications extends JelenaView<JobApplication> {
     protected void save(JobApplication ja) {
         if (!control(ja)) {
             return;
-            
+
         }
         ja.setApplicant((Applicant) cmbApplicants.getSelectedItem());
         ja.setJobposition((JobPosition) cmbJobPositions.getSelectedItem());
+        ja.setDateAndTimeOfReceive(ja.getDateAndTimeOfReceive());
         ja.setNumberOfApplication(Integer.parseInt(txtNumberOfApplication.getText()));
-        
+
         try {
             processing.save(ja);
         } catch (JelenaException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             return;
         }
-        
+
         load();
     }
-    
+
     @Override
     protected boolean control(JobApplication ja) {
         return controlDateAndTimeOfReceive(ja)
                 && controlNumberOfApplication(ja);
     }
-    
+
     @Override
     protected void setValues(JobApplication ja) {
         cmbApplicants.setSelectedItem(ja.getApplicant());
         cmbJobPositions.setSelectedItem(ja.getJobposition());
         dtpDateAndTimeOfReceive.setDateTimeStrict(Utility.convertToLocalDateTimeViaInstant(ja.getDateAndTimeOfReceive()));
-        ja.setNumberOfApplication(Integer.parseInt(txtNumberOfApplication.getText()));
-        
+        txtNumberOfApplication.setText(ja.getNumberOfApplication() == null ? ""
+                : ja.getNumberOfApplication().toString());
+
     }
-    
+
     private boolean controlDateAndTimeOfReceive(JobApplication ja) {
         if (dtpDateAndTimeOfReceive.getDateTimeStrict() == null) {
             JOptionPane.showMessageDialog(null, "Selection of date of receive is mandatory");
@@ -372,7 +395,7 @@ public class FormJobApplications extends JelenaView<JobApplication> {
         ja.setDateAndTimeOfReceive(Utility.convertToDateViaSqlTimestamp(dtpDateAndTimeOfReceive.getDateTimeStrict()));
         return true;
     }
-    
+
     private boolean controlNumberOfApplication(JobApplication ja) {
         if (txtNumberOfApplication.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Number of application is mandatory");
@@ -381,37 +404,37 @@ public class FormJobApplications extends JelenaView<JobApplication> {
         ja.setNumberOfApplication(ja.getNumberOfApplication());
         return true;
     }
-    
+
     private void loadApplicants() {
-        
+
         DefaultComboBoxModel<Applicant> m = new DefaultComboBoxModel<>();
         Applicant a = new Applicant();
         a.setId(0);
         a.setFirstName("Choose");
         a.setLastName("Applicant");
         m.addElement(a);
-        
+
         new ProcessingApplicant().getEntitys().forEach((applicant) -> {
             m.addElement(applicant);
         });
         cmbApplicants.setModel(m);
-        
+
     }
-    
+
     private void loadJobPositions() {
-        
+
         DefaultComboBoxModel<JobPosition> m = new DefaultComboBoxModel<>();
         JobPosition jp = new JobPosition();
         jp.setId(0);
         jp.setNameOfJobPosition("Choose job position");
-        
+
         m.addElement(jp);
-        
+
         new ProcessingJobPosition().getEntitys().forEach((jobPosition) -> {
             m.addElement(jobPosition);
         });
         cmbJobPositions.setModel(m);
-        
+
     }
-    
+
 }

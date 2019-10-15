@@ -23,7 +23,7 @@ public class ProcessingJobOffer extends Processing<JobOffer> {
     }
 
     public List<JobOffer> getEntitys(String condition) {
-        return session.createQuery("from JobOffer jo where jo.Salary like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+        return session.createQuery("from JobOffer jo where cast(jo.salary as string) like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
     }
 
     @Override
