@@ -37,7 +37,7 @@ public abstract class Processing<T> {
     }
 
     public void delete(T entity) throws JelenaException {
-        controlSave(entity);
+        controlDelete(entity);
         session.beginTransaction();
         session.delete(entity);
         session.getTransaction().commit();

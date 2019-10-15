@@ -25,7 +25,7 @@ public abstract class ProcessingPerson<T extends Person> extends Processing<T> {
 
     @Override
     protected void controlDelete(T entity) throws JelenaException {
-
+        super.delete(entity);
     }
 
     protected void controlFirstName(String firstName) throws JelenaException {
@@ -91,8 +91,9 @@ public abstract class ProcessingPerson<T extends Person> extends Processing<T> {
         for (int i = 0; i < 10; i++) {
             a = a + Integer.parseInt(personalIdentificationNumber.substring(i, i + 1));
             a = a % 10;
-            if (a == 0) 
+            if (a == 0) {
                 a = 10;
+            }
             a *= 2;
             a = a % 11;
         }

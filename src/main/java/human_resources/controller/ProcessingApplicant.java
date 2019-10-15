@@ -35,7 +35,9 @@ public class ProcessingApplicant extends ProcessingPerson<Applicant> {
 
     @Override
     protected void controlDelete(Applicant entity) throws JelenaException {
-        super.controlDelete(entity);
+        if(entity.getJobApplications().size()>0){
+            throw new JelenaException("You cannot delete applicant because it contains active data");
+        }
 
     }
 
