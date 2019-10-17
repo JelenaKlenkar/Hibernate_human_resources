@@ -23,6 +23,9 @@ public class ProcessingOperator extends ProcessingPerson<Operator> {
     return session.createQuery("from Operator").list();
     
 }
+    public List<Operator> getEntitys(String condition) {
+        return session.createQuery("from Operator o where o.firstName like :condition or o.lastName like :condition").setParameter("condition","%" +condition + "%").setMaxResults(20).list();
+    }
     
     public Operator getOperater(String email){
         
@@ -34,13 +37,21 @@ public class ProcessingOperator extends ProcessingPerson<Operator> {
     }
 
     @Override
-    protected void controlSave(Operator entity_) throws JelenaException {
-        
+    protected void controlSave(Operator entity) throws JelenaException {
+        controlPassword(entity);
     }
 
     @Override
-    protected void controlDelete(Operator entity_) throws JelenaException {
+    protected void controlDelete(Operator entity) throws JelenaException {
        
+    }
+
+    private void controlPassword(Operator entity) throws JelenaException {
+        if (entity.getPassword()== null || entity.getPassword().length() == 0) {
+
+            throw new JelenaException("Password needs to be entered");
+
+        }
     }
     
 }

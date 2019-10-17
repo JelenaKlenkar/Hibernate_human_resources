@@ -64,7 +64,7 @@
               <Component id="jScrollPane2" min="-2" pref="321" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnExportExcel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" pref="26" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>

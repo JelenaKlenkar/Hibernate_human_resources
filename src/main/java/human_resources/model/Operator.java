@@ -34,4 +34,9 @@ public class Operator extends Person implements Serializable {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return super.getFirstName() + " " + super.getLastName();
+    }
+
 }

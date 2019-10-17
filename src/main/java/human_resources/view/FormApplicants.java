@@ -313,7 +313,7 @@ public class FormApplicants extends JelenaView<Applicant> {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnExportExcel)
-                .addGap(18, 26, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -460,8 +460,8 @@ public class FormApplicants extends JelenaView<Applicant> {
 
     protected void setValues(Applicant a) {
 
-        txtFirstName.setText(a.getFirstName());
-        txtLastName.setText(a.getLastName());
+        txtFirstName.setText(a.getFirstName()== null ? "" : a.getFirstName());
+        txtLastName.setText(a.getLastName()== null ? "" : a.getLastName());
         txtAddress.setText(a.getAddress() == null ? "" : a.getAddress());
         txtPhoneNumber.setText(a.getPhoneNumber() == null ? "" : a.getPhoneNumber());
         txtEmail.setText(a.getEmail() == null ? "" : a.getEmail());

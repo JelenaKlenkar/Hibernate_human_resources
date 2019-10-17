@@ -41,6 +41,7 @@ public class Menu extends javax.swing.JFrame {
         btnTestings = new javax.swing.JButton();
         btnInterviews = new javax.swing.JButton();
         btnJobOffers = new javax.swing.JButton();
+        btnOperators = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         lblTime = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -55,8 +56,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Programs"));
 
-        btnApplicants.setBackground(new java.awt.Color(204, 204, 204));
-        btnApplicants.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnApplicants.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnApplicants.setText("Applicants");
         btnApplicants.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,8 +64,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnJobApplications.setBackground(new java.awt.Color(204, 204, 204));
-        btnJobApplications.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnJobApplications.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnJobApplications.setText("Job applications");
         btnJobApplications.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,8 +72,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnJobPositions.setBackground(new java.awt.Color(204, 204, 204));
-        btnJobPositions.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnJobPositions.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnJobPositions.setText("Job positions");
         btnJobPositions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,8 +80,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnTestings.setBackground(new java.awt.Color(204, 204, 204));
-        btnTestings.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnTestings.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnTestings.setText("Testings");
         btnTestings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,8 +88,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnInterviews.setBackground(new java.awt.Color(204, 204, 204));
-        btnInterviews.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnInterviews.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnInterviews.setText("Interviews");
         btnInterviews.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,12 +96,19 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnJobOffers.setBackground(new java.awt.Color(204, 204, 204));
-        btnJobOffers.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        btnJobOffers.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnJobOffers.setText("JobOffers");
         btnJobOffers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnJobOffersActionPerformed(evt);
+            }
+        });
+
+        btnOperators.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        btnOperators.setText("Operators");
+        btnOperators.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOperatorsActionPerformed(evt);
             }
         });
 
@@ -116,30 +119,39 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnApplicants, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnJobApplications)
-                    .addComponent(btnJobPositions, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTestings, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInterviews, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnJobOffers, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnOperators, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnInterviews, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTestings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnJobPositions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnApplicants, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnJobApplications)
+                            .addComponent(btnJobOffers, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(btnOperators)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnApplicants, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnJobApplications, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnJobPositions)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnTestings)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnInterviews)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnJobOffers)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         jToolBar1.setRollover(true);
@@ -187,8 +199,8 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -228,6 +240,10 @@ public class Menu extends javax.swing.JFrame {
         new FormJobOffers().setVisible(true);
     }//GEN-LAST:event_btnJobOffersActionPerformed
 
+    private void btnOperatorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperatorsActionPerformed
+        new FormOperators().setVisible(true);
+    }//GEN-LAST:event_btnOperatorsActionPerformed
+
     private class Time extends Thread {
 
         SimpleDateFormat df = new SimpleDateFormat(
@@ -252,6 +268,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnJobApplications;
     private javax.swing.JButton btnJobOffers;
     private javax.swing.JButton btnJobPositions;
+    private javax.swing.JButton btnOperators;
     private javax.swing.JButton btnTestings;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
