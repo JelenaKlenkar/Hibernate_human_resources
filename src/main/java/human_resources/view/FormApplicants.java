@@ -15,6 +15,9 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -245,7 +248,7 @@ public class FormApplicants extends JelenaView<Applicant> {
         });
 
         btnExportExcel.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        btnExportExcel.setText("Export Excel");
+        btnExportExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/excel.png"))); // NOI18N
         btnExportExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExportExcelActionPerformed(evt);
@@ -298,8 +301,8 @@ public class FormApplicants extends JelenaView<Applicant> {
                         .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -460,8 +463,8 @@ public class FormApplicants extends JelenaView<Applicant> {
 
     protected void setValues(Applicant a) {
 
-        txtFirstName.setText(a.getFirstName()== null ? "" : a.getFirstName());
-        txtLastName.setText(a.getLastName()== null ? "" : a.getLastName());
+        txtFirstName.setText(a.getFirstName() == null ? "" : a.getFirstName());
+        txtLastName.setText(a.getLastName() == null ? "" : a.getLastName());
         txtAddress.setText(a.getAddress() == null ? "" : a.getAddress());
         txtPhoneNumber.setText(a.getPhoneNumber() == null ? "" : a.getPhoneNumber());
         txtEmail.setText(a.getEmail() == null ? "" : a.getEmail());
@@ -513,6 +516,7 @@ public class FormApplicants extends JelenaView<Applicant> {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportExcelActionPerformed
+
         try {
 
             Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
