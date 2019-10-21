@@ -22,10 +22,9 @@ public class ProcessingJobApplication extends Processing<JobApplication> {
     public List<JobApplication> getEntitys() {
         return session.createQuery("from JobApplication").list();
     }
-  
 
     public List<JobApplication> getEntitys(String condition) {
-        return session.createQuery("from JobApplication ja where cast(ja.numberOfApplication as string) like :condition or concat(ja.applicant.firstName,ja.applicant.lastName) like :condition").setParameter("condition","%" +condition + "%").setMaxResults(20).list();
+        return session.createQuery("from JobApplication ja where cast(ja.numberOfApplication as string) like :condition or concat(ja.applicant.firstName,ja.applicant.lastName) like :condition").setParameter("condition", "%" + condition + "%").setMaxResults(20).list();
     }
 
     @Override
@@ -36,8 +35,7 @@ public class ProcessingJobApplication extends Processing<JobApplication> {
 
     @Override
     protected void controlDelete(JobApplication entity) throws JelenaException {
-        super.delete(entity);
-     
+
     }
 
     private void controlNumberOfApplication(JobApplication entity) throws JelenaException {
@@ -47,9 +45,9 @@ public class ProcessingJobApplication extends Processing<JobApplication> {
     }
 
     private void controlDateAndTimeOfReceive(JobApplication entity) throws JelenaException {
-        if(entity.getDateAndTimeOfReceive()==null){
+        if (entity.getDateAndTimeOfReceive() == null) {
             return;
         }
-                
+
     }
 }

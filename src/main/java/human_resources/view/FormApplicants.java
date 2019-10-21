@@ -7,20 +7,17 @@ package human_resources.view;
 
 import human_resources.controller.ProcessingApplicant;
 import human_resources.model.Applicant;
+import human_resources.utility.HibernateUtil;
 import human_resources.utility.JelenaException;
 import human_resources.utility.Utility;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.poi.ss.usermodel.Cell;
@@ -46,6 +43,7 @@ public class FormApplicants extends JelenaView<Applicant> {
         setTitle(Utility.getNameOfApplication() + " Applicants");
         processing = new ProcessingApplicant();
         btnSearch.setText("\uD83D\uDD0D");
+        btnHelp.setText("\u2753");
         btnChooseFileApplicantCV.setText("\uD83D\uDCBE");
         btnChooseMotivationalLetter.setText("\uD83D\uDCBE");
         load();
@@ -93,53 +91,54 @@ public class FormApplicants extends JelenaView<Applicant> {
         List = new javax.swing.JList<>();
         txtCondition = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
-        btnExportExcel = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnExportExcel = new javax.swing.JButton();
+        btnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Courier New", 2, 12))); // NOI18N
 
-        lblFirstName.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblFirstName.setText("First name:");
+        lblFirstName.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         txtFirstName.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
-        lblLastName.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblLastName.setText("Last name:");
+        lblLastName.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         txtLastName.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
-        lblAddress.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblAddress.setText("Address:");
+        lblAddress.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         txtAddress.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
-        lblPhoneNumber.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblPhoneNumber.setText("Phone number:");
+        lblPhoneNumber.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         txtPhoneNumber.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
-        lblEmail.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblEmail.setText("Email:");
+        lblEmail.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         txtEmail.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
-        lblPersonalIdentificationNumber.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblPersonalIdentificationNumber.setText("Personal identification number:");
+        lblPersonalIdentificationNumber.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblPersonalIdentificationNumber.setToolTipText("");
 
         txtPersonalIdentificationNumber.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
-        lblApplicantCV.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblApplicantCV.setText("Applicant CV:");
+        lblApplicantCV.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         txtApplicantCv.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
-        lblMotivationalLetter.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         lblMotivationalLetter.setText("Motivational letter:");
+        lblMotivationalLetter.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
 
         txtMotivationalLetter.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
 
@@ -247,6 +246,30 @@ public class FormApplicants extends JelenaView<Applicant> {
             }
         });
 
+        btnAdd.setText("Add");
+        btnAdd.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setText("Update");
+        btnUpdate.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete");
+        btnDelete.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         btnExportExcel.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         btnExportExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/excel.png"))); // NOI18N
         btnExportExcel.addActionListener(new java.awt.event.ActionListener() {
@@ -255,27 +278,10 @@ public class FormApplicants extends JelenaView<Applicant> {
             }
         });
 
-        btnAdd.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnHelp.setText("h");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnDelete.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnHelpActionPerformed(evt);
             }
         });
 
@@ -296,36 +302,42 @@ public class FormApplicants extends JelenaView<Applicant> {
                         .addGap(18, 18, 18)
                         .addComponent(btnDelete)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnExportExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHelp)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnExportExcel)
-                .addGap(18, 18, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnExportExcel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdd)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnDelete))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -515,52 +527,6 @@ public class FormApplicants extends JelenaView<Applicant> {
         load();
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void btnExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportExcelActionPerformed
-
-        try {
-
-            Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
-
-            /* CreationHelper helps us create instances of various things like DataFormat, 
-           Hyperlink, RichTextString etc, in a format (HSSF, XSSF) independent way */
-            CreationHelper createHelper = workbook.getCreationHelper();
-
-            // Create a Sheet
-            Sheet sheet = workbook.createSheet("Applicants");
-
-            // Create a Row
-            Row headerRow = sheet.createRow(0);
-
-            Cell cell = headerRow.createCell(0);
-            cell.setCellValue("First name");
-
-            cell = headerRow.createCell(1);
-            cell.setCellValue("Last name");
-
-            int rowNum = 1;
-            for (Applicant a : processing.getEntitys()) {
-                Row row = sheet.createRow(rowNum++);
-
-                row.createCell(0)
-                        .setCellValue(a.getFirstName());
-
-                row.createCell(1)
-                        .setCellValue(a.getLastName());
-
-            }
-
-            // Write the output to a file
-            FileOutputStream fileOut = new FileOutputStream("E:" + File.separator + "poi-generated-file.xlsx");
-            workbook.write(fileOut);
-            fileOut.close();
-
-            // Closing the workbook
-            workbook.close();
-
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btnExportExcelActionPerformed
-
     private void btnChooseFileApplicantCVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseFileApplicantCVActionPerformed
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         jfc.setDialogTitle("Choose a directory to save your file: ");
@@ -590,6 +556,103 @@ public class FormApplicants extends JelenaView<Applicant> {
         }
     }//GEN-LAST:event_btnChooseMotivationalLetterActionPerformed
 
+    private void btnExportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportExcelActionPerformed
+        HibernateUtil.getSession().clear();
+        try {
+
+            Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+
+            /* CreationHelper helps us create instances of various things like DataFormat,
+            Hyperlink, RichTextString etc, in a format (HSSF, XSSF) independent way */
+            CreationHelper createHelper = workbook.getCreationHelper();
+
+            // Create a Sheet
+            Sheet sheet = workbook.createSheet("Applicants");
+
+            // Create a Row
+            Row headerRow = sheet.createRow(0);
+
+            Cell cell = headerRow.createCell(0);
+            cell.setCellValue("First name");
+
+            cell = headerRow.createCell(1);
+            cell.setCellValue("Last name");
+
+            cell = headerRow.createCell(2);
+            cell.setCellValue("Address");
+
+            cell = headerRow.createCell(3);
+            cell.setCellValue("Phone number");
+
+            cell = headerRow.createCell(4);
+            cell.setCellValue("Email");
+
+            cell = headerRow.createCell(5);
+            cell.setCellValue("Personal identification number");
+
+            int rowNum = 1;
+            for (Applicant a : processing.getEntitys()) {
+                Row row = sheet.createRow(rowNum++);
+
+                row.createCell(0)
+                        .setCellValue(a.getFirstName());
+
+                row.createCell(1)
+                        .setCellValue(a.getLastName());
+
+                row.createCell(2)
+                        .setCellValue(a.getAddress());
+
+                row.createCell(3)
+                        .setCellValue(a.getPhoneNumber());
+
+                row.createCell(4)
+                        .setCellValue(a.getEmail());
+
+                row.createCell(5)
+                        .setCellValue(a.getPersonalIdentificationNumber());
+
+            }
+            JFileChooser file = new JFileChooser();
+            file.addChoosableFileFilter(
+                    new FileNameExtensionFilter("Microsoft Excel", "xlsx"));
+            file.setCurrentDirectory(new File(System.getProperty("user.home")));
+            file.setSelectedFile(new File(file.getCurrentDirectory().getAbsolutePath() + File.separator + "Listofapplicants.xlsx"));
+
+            if (file.showSaveDialog(this) == JFileChooser.CANCEL_OPTION) {
+                return;
+            }
+
+            // Write the output to a file
+            FileOutputStream fileOut = new FileOutputStream(file.getSelectedFile());
+            workbook.write(fileOut);
+            fileOut.close();
+
+            // Closing the workbook
+            workbook.close();
+            Runtime.getRuntime().exec("cmd /c start excel.exe " + file.getSelectedFile().getAbsolutePath());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnExportExcelActionPerformed
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        JOptionPane.showMessageDialog(null, "1. First name - enter first name of applicant"
+                + "\n2. Last name - enter last name of applicant"
+                + "\n3. Address - enter addres of applicant"
+                + "\n4. Phone number - enter phone number of applicant"
+                + "\n5. Email - enter email of applicant"
+                + "\n6. Personal identification number - enter personal identification number of applicant"
+                + "\n7. Applicant CV - choose CV from applicant"
+                + "\n8. Motivational letter - choose motivational letter of applicant "
+                + "\n**Add button - Adds new entry to database"
+                + "\n**Update button - Updates selected database entry with new value"
+                + "\n**Delete button - Removes selected entry from database "
+                + "Button with excel icon - exports data of applicant from database to excel", "Help", JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_btnHelpActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<Applicant> List;
@@ -598,6 +661,7 @@ public class FormApplicants extends JelenaView<Applicant> {
     private javax.swing.JButton btnChooseMotivationalLetter;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnExportExcel;
+    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel jPanel1;

@@ -22,7 +22,7 @@ public class ProcessingTesting extends Processing<Testing> {
     }
 
     public List<Testing> getEntitys(String condition) {
-        return session.createQuery("from Testing t where  t.typeOfTesting like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+        return session.createQuery("from Testing t where  t.typeOfTesting like :condition").setParameter("condition", "%" + condition + "%").setMaxResults(20).list();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ProcessingTesting extends Processing<Testing> {
 
     @Override
     protected void controlDelete(Testing entity) throws JelenaException {
-        super.delete(entity);
+        
     }
 
     private void controlTypeOfTesting(Testing entity) throws JelenaException {

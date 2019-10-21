@@ -35,7 +35,7 @@ public class ProcessingJobOffer extends Processing<JobOffer> {
 
     @Override
     protected void controlDelete(JobOffer entity) throws JelenaException {
-        super.delete(entity);
+       
     }
 
     private void controlSalary(JobOffer entity) throws JelenaException {

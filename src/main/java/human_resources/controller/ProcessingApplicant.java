@@ -21,7 +21,7 @@ public class ProcessingApplicant extends ProcessingPerson<Applicant> {
     }
 
     public List<Applicant> getEntitys(String condition) {
-        return session.createQuery("from Applicant a where a.firstName like :condition or a.lastName like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+        return session.createQuery("from Applicant a where a.firstName like :condition or a.lastName like :condition").setParameter("condition", "%" + condition + "%").setMaxResults(20).list();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ProcessingApplicant extends ProcessingPerson<Applicant> {
 
     @Override
     protected void controlDelete(Applicant entity) throws JelenaException {
-        if(entity.getJobApplications().size()>0){
+        if (entity.getJobApplications().size() > 0) {
             throw new JelenaException("You cannot delete applicant because it contains active data");
         }
 

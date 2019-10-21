@@ -19,9 +19,11 @@ public class ProcessingInterview extends Processing<Interview> {
     public List<Interview> getEntitys() {
         return session.createQuery("from Interview").list();
     }
+
     public List<Interview> getEntitys(String condition) {
-        return session.createQuery("from Interview i where i.typeOfInterview like :condition").setParameter("condition", condition + "%").setMaxResults(20).list();
+        return session.createQuery("from Interview i where i.typeOfInterview like :condition").setParameter("condition", "%" + condition + "%").setMaxResults(20).list();
     }
+
     @Override
     protected void controlSave(Interview entity) throws JelenaException {
         controlTypeOfInterview(entity);
@@ -31,7 +33,7 @@ public class ProcessingInterview extends Processing<Interview> {
 
     @Override
     protected void controlDelete(Interview entity) throws JelenaException {
-      super.delete(entity);
+        
     }
 
     private void controlTypeOfInterview(Interview entity) throws JelenaException {
@@ -45,7 +47,7 @@ public class ProcessingInterview extends Processing<Interview> {
     }
 
     private void controlDateOfInterview(Interview entity) throws JelenaException {
-       if(entity.getDateOfInterview()==null){
+        if (entity.getDateOfInterview() == null) {
             return;
         }
     }

@@ -41,6 +41,7 @@ public class FormInterviews extends JelenaView<Interview> {
         LocalDate now = LocalDate.now();
         dcDateOfInterview.setDate(Utility.convertToDateViaInstant(now));
         btnSearch.setText("\uD83D\uDD0D");
+        btnHelp.setText("\u2753");
         loadJobApplications();
         load();
     }
@@ -80,6 +81,7 @@ public class FormInterviews extends JelenaView<Interview> {
         List = new javax.swing.JList<>();
         btnSearch = new javax.swing.JButton();
         txtCondition = new javax.swing.JTextField();
+        btnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(550, 350));
@@ -197,6 +199,13 @@ public class FormInterviews extends JelenaView<Interview> {
             }
         });
 
+        btnHelp.setText("h");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -220,7 +229,8 @@ public class FormInterviews extends JelenaView<Interview> {
                         .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnHelp, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -234,14 +244,17 @@ public class FormInterviews extends JelenaView<Interview> {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd)
                             .addComponent(btnUpdate)
-                            .addComponent(btnDelete)))
+                            .addComponent(btnDelete))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCondition))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnHelp)
+                        .addGap(22, 22, 22))))
         );
 
         pack();
@@ -306,7 +319,7 @@ public class FormInterviews extends JelenaView<Interview> {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-         Interview i = List.getSelectedValue();
+        Interview i = List.getSelectedValue();
         if (i == null) {
             JOptionPane.showMessageDialog(null, "First choose item");
             return;
@@ -314,10 +327,21 @@ public class FormInterviews extends JelenaView<Interview> {
         save(i);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        JOptionPane.showMessageDialog(null, "1. Job application combo box-select number of job application of applicant"
+                + "\n2. Type of interview - enter type of interview for selected number of application"
+                + "\n3. Date of interview - select date of interview when interview was held"
+                + "\n4. Number of interview - select number of interview of selected number of application"
+                + "\n**Add button - Adds new entry to database"
+                + "\n**Update button - Updates selected database entry with new values"
+                + "\n**Delete button - Removes selected entry from database", "Help", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnHelpActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<Interview> List;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<JobApplication> cmbJobApplications;

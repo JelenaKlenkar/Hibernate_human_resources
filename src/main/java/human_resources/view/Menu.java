@@ -279,4 +279,4 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jmHelp;
     private javax.swing.JLabel lblTime;
     // End of variables declaration//GEN-END:variables
-    }
+}
