@@ -97,7 +97,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnJobOffers.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        btnJobOffers.setText("JobOffers");
+        btnJobOffers.setText("Job Offers");
         btnJobOffers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnJobOffersActionPerformed(evt);
